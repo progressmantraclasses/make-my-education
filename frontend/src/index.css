@@ -302,6 +302,12 @@ body {
   border-color: rgba(19, 144, 249, 0.15);
 }
 
+.history-item--active {
+  background: #e8f3ff;
+  border-color: rgba(19, 144, 249, 0.3);
+  font-weight: 600;
+}
+
 .history-item__icon {
   font-size: 0.85rem;
   flex-shrink: 0;

@@ -6,6 +6,16 @@ The backend runs a strict Retrieval-Augmented Generation (RAG) pipeline. Every a
 
 ---
 
+## 🚀 Live Demo & Prototype Walkthrough
+
+* **Frontend UI (Vercel)**: [https://make-my-education.vercel.app/](https://make-my-education.vercel.app/)  
+  *(Note: The live UI is currently disconnected from the backend API as the GCP compute credits have expired. To test the full RAG pipeline, please run the backend locally using the instructions below.)*
+* **Video Walkthrough**: [Watch on Google Drive](https://drive.google.com/file/d/13Q0J8W3QSLcKbEipgB1C3BJ4vz94Vvct/view?usp=sharing)
+
+This README serves to **demonstrate the working prototype**, **explain the technical approach and architecture**, and **discuss design decisions, scalability, and future improvements**.
+
+---
+
 ## Technology Stack
 
 ### Frontend
@@ -178,3 +188,11 @@ Assumptions: ~2,500 input tokens and ~300 output tokens per query, 30% Redis cac
 | **Total Estimated Cost** | **~$11.18 (approx Rs 930)** | **~$111.80 (approx Rs 9,300)** |
 
 Cache hit rate directly impacts cost. At 50% cache hit rate (common for popular queries), the LLM cost above halves.
+
+---
+
+## 🔮 Future Improvements
+
+1. **Ultra-Low Latency Inference**: Currently, the system uses a proxy-routed LLM which can sometimes introduce network latency. In a full production environment, migrating to **Google's native Gemini models** (e.g., Gemini 1.5 Flash) or hosting **Llama 3 8B locally on dedicated GPUs** (without API rate limits) would dramatically reduce Time-to-First-Token (TTFT) and make the chatbot feel instantaneous.
+2. **Streaming Responses**: Upgrading the FastAPI endpoints and React frontend to use Server-Sent Events (SSE) to stream the JSON tokens to the user in real-time.
+3. **Multi-turn Context**: Expanding the Redis schema to temporarily store previous chat context, allowing users to ask "What about the second one?" without losing the grounding of the retrieved chunks.

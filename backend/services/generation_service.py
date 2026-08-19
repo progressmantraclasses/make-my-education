@@ -126,7 +126,17 @@ def parse_llm_response(raw_llm_text: str, force_error_reason: str = None) -> dic
 
     # Post-process: strip raw college IDs like (C012) from the text to ensure frontend cleanliness
     parsed["answer"] = re.sub(r"\s*\(C\d{3}\)", "", parsed["answer"])
-    
+
+    # Post-process: strip any "Follow-up Questions" / "Follow-ups" section the LLM appended
+    # to the answer text — the frontend already renders follow_up_questions as buttons,
+    # so any in-text copy creates a duplicate that confuses the user.
+    parsed["answer"] = re.sub(
+        r"\n+#{0,4}\s*follow[- ]?up[s]?.*",
+        "",
+        parsed["answer"],
+        flags=re.IGNORECASE | re.DOTALL,
+    ).rstrip()
+
     clean_followups = []
     for q in parsed["follow_up_questions"]:
         clean_followups.append(re.sub(r"\s*\(C\d{3}\)", "", str(q)))
