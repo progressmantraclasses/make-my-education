@@ -1,136 +1,180 @@
-# Make My Education — RAG College Advisor 🎓
+# Make My Education — AI College Advisor
 
-[![GitHub repository](https://img.shields.io/badge/GitHub-Repository-black?style=flat&logo=github)](https://github.com/progressmantraclasses/make-my-education)
+Make My Education is a full-stack AI advisory platform that helps students find and compare colleges. A student can ask a plain-English question like "Which engineering colleges can I afford under Rs 80,000 a year?" and the system retrieves, reasons over, and responds with a structured, grounded answer — complete with citations and follow-up suggestions.
 
-A full-stack, enterprise-grade Retrieval-Augmented Generation (RAG) platform that provides accurate, strictly grounded answers to natural-language questions about colleges. 
-
-The system leverages advanced semantic search, caching, and a modern React frontend to deliver a professional ChatGPT-like experience with auto-generated citations and follow-up questions.
+The backend runs a strict Retrieval-Augmented Generation (RAG) pipeline. Every answer the LLM produces is anchored exclusively to the college dataset; the model cannot hallucinate data that isn't there.
 
 ---
 
-## 🏗️ Architecture & Tech Stack
+## Technology Stack
 
-### Frontend (User Interface)
-*   **Framework**: React 18 + Vite for blazing-fast HMR and building.
-*   **Styling**: Vanilla CSS with a polished, modern, light-mode aesthetic (glassmorphism, interactive pill-buttons, smooth scroll).
-*   **Features**: Auto-scrolling chat, citation chips, structured data rendering, and auto-generated follow-up questions.
+### Frontend
+- React 18 with Vite for fast development and optimised production builds.
+- Custom CSS — glassmorphism UI, CSS variables for theming, flexible grid/flex layouts.
+- react-markdown and remark-gfm to render LLM-generated Markdown tables, bold text, and lists correctly in the browser.
 
-### Backend (API & RAG Pipeline)
-*   **Framework**: FastAPI (Python 3.11+) for high-performance async endpoints.
-*   **Vector Database**: Pinecone (Serverless) for lightning-fast similarity search.
-*   **Embedding Model**: `sentence-transformers/all-MiniLM-L6-v2` (Local, zero-cost embedding).
-*   **Caching Layer**: Upstash Redis (Serverless) for sub-100ms cache hits.
-*   **LLM Provider**: Proxy-routed `openai/gpt-oss-120b` (Large) and `openai/gpt-oss-20b` (Small) for JSON-structured, highly grounded  generation.
-
----
-
-## 🚀 Quick Start Guide
-
-### 1. Backend Setup
-1. Open a terminal and navigate to the `backend` directory:
-   ```bash
-   cd backend
-   ```
-2. Install the required Python dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Set up your environment variables (copy `.env.example` to `.env`):
-   ```bash
-   cp .env.example .env
-   ```
-   *Make sure your API keys (Pinecone, Upstash Redis, and LLM Proxy keys) are properly configured.*
-4. **(Optional)** Run data ingestion to populate Pinecone:
-   ```bash
-   python ingest.py
-   ```
-5. Start the FastAPI server:
-   ```bash
-   uvicorn api.app:app --reload
-   ```
-   *The API will run at `http://localhost:8000`.*
-
-### 2. Frontend Setup
-1. Open a **new** terminal and navigate to the `frontend` directory:
-   ```bash
-   cd frontend
-   ```
-2. Install Node dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the Vite development server:
-   ```bash
-   npm run dev
-   ```
-4. Open your browser and navigate to `http://localhost:5173`.
+### Backend
+- FastAPI (Python 3.11+) for async, high-performance REST endpoints.
+- Pinecone Serverless as the vector database for semantic similarity search.
+- sentence-transformers/all-MiniLM-L6-v2 runs locally — zero-cost embeddings, no external API call needed.
+- Upstash Redis (Serverless) for query caching, keeping repeated queries near-instant and completely free.
+- Groq-proxied LLMs: groq/compound-mini as the primary fast model and openai/gpt-oss-120b as the fallback for harder queries.
 
 ---
 
-## 🧪 Testing the RAG Pipeline
+## Key Design Decisions
 
-The backend includes automated testing scripts to evaluate the RAG pipeline against strict heuristics.
+**Tiered LLM Fallback.** Every query is first attempted with the small, fast compound-mini model. If it fails or rate-limits, the system automatically retries with the 120B parameter model. This cuts average inference cost by over 80% while keeping reliability high.
 
-**1. Run the 20-Question Evaluation Suite:**
+**Universal JSON Mode.** The response format is set to `{"type": "json_object"}` rather than the strict json_schema mode. Enforcing the schema via prompt engineering is far more portable and token-efficient across model sizes.
+
+**BLUF Formatting.** The system prompt enforces Bottom Line Up Front — the LLM must state its direct conclusion in the very first sentence, before tables or explanations. This makes answers immediately scannable.
+
+**Regex Post-Processing.** After the LLM responds, the backend strips any internal college identifiers (e.g. C012) from both the answer text and follow-up questions before sending the response to the frontend. The user never sees raw system tokens.
+
+**Local Embeddings.** Running all-MiniLM-L6-v2 locally drops embedding costs to zero permanently, while maintaining strong semantic match quality.
+
+---
+
+## Project Structure
+
+```
+make-my-education/
+├── backend/
+│   ├── api/                    # FastAPI app and route definitions
+│   ├── services/
+│   │   ├── cache_service.py    # Upstash Redis read/write logic
+│   │   ├── retrieval_service.py # Pinecone semantic search + metadata filtering
+│   │   ├── generation_service.py # LLM prompt, fallback logic, post-processing
+│   │   ├── query_service.py    # Orchestrates the full RAG pipeline
+│   │   ├── normalization_service.py # Fee unit detection (semester vs annual)
+│   │   └── ingestion_service.py # CSV → structured chunks for Pinecone
+│   ├── controllers/
+│   │   └── query_controller.py
+│   ├── config.py               # Central config (models, TOP_K, API keys)
+│   ├── ingest.py               # One-time Pinecone ingestion script
+│   ├── test_20.py              # 20-question automated evaluation suite
+│   ├── answer.py               # CLI helper used by the test runner
+│   └── requirements.txt
+├── frontend/
+│   ├── src/
+│   │   ├── components/         # AnswerCard, LoadingSpinner, etc.
+│   │   ├── pages/              # HomePage
+│   │   └── index.css           # Full design system
+│   ├── vite.config.js
+│   └── package.json
+└── README.md
+```
+
+---
+
+## Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/progressmantraclasses/make-my-education.git
+cd make-my-education
+```
+
+### 2. Configure environment variables
+Create a `.env` file inside the `backend/` folder:
+```env
+# backend/.env
+GROQ_API_KEY="your_groq_or_proxy_api_key_here"
+PINECONE_API_KEY="your_pinecone_api_key_here"
+UPSTASH_REDIS_REST_URL="your_upstash_redis_url_here"
+UPSTASH_REDIS_REST_TOKEN="your_upstash_redis_token_here"
+```
+
+### 3. Backend
+```bash
+cd backend
+python -m venv venv
+
+# Activate (Windows)
+venv\Scripts\activate
+# Activate (Mac / Linux)
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+# Ingest college data into Pinecone (run once, or after updating the CSV)
+python ingest.py
+
+# Start the API server
+uvicorn api.app:app --reload
+# Runs at http://localhost:8000
+```
+
+### 4. Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+# Runs at http://localhost:5173
+```
+
+---
+
+## Operations
+
+**Run the 20-question evaluation suite**
 ```bash
 cd backend
 python test_20.py
 ```
-*This evaluates complex edge cases (e.g., negative filters, out-of-scope refusals, zero-value placement packages) and automatically grades them as ✅ PASS or ❌ FAIL. Results are saved in `eval_results_20.md`.*
+Results are written progressively to `eval_results_20.md` so partial output is preserved even if the run is interrupted.
 
-**2. Run the Core 7 Questions (CLI Output):**
+**Flush the Redis cache** (use this after modifying prompts or data)
 ```bash
 cd backend
-python run_all.py
+python -c "from services.cache_service import get_redis_client; get_redis_client().flushdb()"
 ```
 
 ---
 
-## 💸 Cost Optimization & Token Efficiency
+## Evaluation Test Cases
 
-This system is engineered for maximum accuracy while keeping token usage and latency strictly optimized.
+The automated suite covers 20 real-world questions designed to stress-test every major edge case the system is expected to handle:
 
-### 1. Smart Caching (Sub-100ms Latency, Zero Cost)
-*   **Upstash Redis**: Every incoming query is normalized (lowercased, whitespace collapsed) and SHA-256 hashed.
-*   **Cache Hit**: Returns instantly without hitting Pinecone or the LLM. Completely bypasses input/output token costs.
+| # | Question | What it tests |
+|---|----------|---------------|
+| 1 | I scored 76%. Which engineering colleges can I apply to with a budget of Rs 1 lakh per year? | Combined cutoff + fee filter |
+| 2 | Which government colleges in the dataset have the highest NAAC grade? | Categorical filter + ranking |
+| 3 | Which is the oldest college in the dataset? | Numerical sort on metadata |
+| 4 | What courses are available in Dehradun? | City-level filter |
+| 5 | Compare the MBA colleges based on placement packages. | Multi-college comparison via Markdown table |
+| 6 | Which colleges offer fee waivers for families earning less than Rs 5 lakh per year? | Nested text retrieval from narrative chunks |
+| 7 | Which colleges have compulsory hostel accommodation? | Boolean metadata flag |
+| 8 | Which colleges provide corporate mentorship to students? | Semantic search on "about" chunk |
+| 9 | Does any college offer B.Tech in Biotechnology? | Empty-set query — correct "answered: true" with negative conclusion |
+| 10 | What additional charges are mentioned for the hotel management college? | Fee detail retrieval from structured text |
+| 11 | Which government colleges do not provide hostel facilities? | Negative filter — "government" AND "no hostel" |
+| 12 | Is there any fee concession specifically for female students? | Narrative search for gender-specific schemes |
+| 13 | A student scored 74%. Can they get admission to a college requiring 75% cutoff? | Edge-case eligibility reasoning (1 mark below cutoff) |
+| 14 | Which colleges offer engineering degrees for less than Rs 60,000 per semester? | Unit conversion — semester vs annual fee normalisation |
+| 15 | Does Shivalik Polytechnic offer a B.Tech degree? | Diploma vs Degree disambiguation guardrail |
+| 16 | Why is the placement package recorded as 0 LPA for NIMS? | Zero-value interpretation (not reported, not worst) |
+| 17 | Are Ganga Valley University and Ganga Institute of Commerce the same institution? | College name disambiguation |
+| 18 | Which colleges are deemed universities and offer engineering courses? | Multi-condition: type = Deemed AND has engineering |
+| 19 | What is the fee concession available at HCE for female students? | Specific institution + demographic retrieval |
+| 20 | Engineering, no hostel required, budget Rs 80,000 per year | Multi-constraint query with optional hostel preference |
 
-### 2. Retrieval Tuning (TOP_K = 20)
-*   We use a highly optimized chunking strategy (2 chunks per college: `structured` and `about`).
-*   Instead of blindly fetching all data, `TOP_K` is carefully tuned to **20**. This ensures deep recall (finding hidden gems like fee waivers in long narratives) while preventing context-window bloat, saving massive amounts of input tokens.
-
-### 3. Model Escalation
-*   **Small Queries**: Default queries use a smaller proxy model (`openai/gpt-oss-20b`), saving ~80% on inference costs.
-*   **Complex Queries**: If a query involves complex comparisons or requires deep reasoning across many retrieved chunks, the system can escalate to a heavier 120B parameter model.
-
-### 4. Zero-Cost Local Embeddings
-*   Instead of using OpenAI's paid `text-embedding-3-small`, the system uses the local `all-MiniLM-L6-v2` model. This drops embedding costs to **$0.00** forever, while maintaining exceptional semantic match quality.
+**Pass criteria:** A question passes if the LLM returns a valid JSON object with a non-empty `answer` field and `answered: true`. A question fails only when the API returns an error or the response cannot be parsed.
 
 ---
 
-## 🛡️ Edge Cases & Guardrails
+## Cost Estimation
 
-1. **Out of Scope Protection**: If a user asks about a course not in the dataset (e.g., "Biotechnology"), the LLM is strictly prompted to return `answered: false` rather than hallucinating a polite "No".
-2. **Follow-up Questions**: The LLM natively generates exactly 3 contextual follow-up questions alongside its answer. These are parsed in JSON and rendered as interactive chips in the UI.
-3. **Data Disambiguation**: Colleges with similar names (e.g., "Ganga Valley University" vs "Ganga Institute of Commerce") are explicitly disambiguated in the prompts using unique `college_id` tags.
+Assumptions: ~2,500 input tokens and ~300 output tokens per query, 30% Redis cache hit rate, local embeddings (zero cost).
 
----
+| Component | 1 Lakh queries (100k) | 1 Million queries (1M) |
+|---|---|---|
+| LLM Input Tokens | ~$8.75 | ~$87.50 |
+| LLM Output Tokens | ~$1.68 | ~$16.80 |
+| Pinecone Vector Search | ~$0.15 | ~$1.50 |
+| Embeddings | $0.00 (local) | $0.00 (local) |
+| Upstash Redis | ~$0.60 | ~$6.00 |
+| **Total Estimated Cost** | **~$11.18 (approx Rs 930)** | **~$111.80 (approx Rs 9,300)** |
 
-## 📂 Project Structure
-
-```text
-├── backend/
-│   ├── api/                   # FastAPI routes (app.py, query_routes.py)
-│   ├── services/              # Core logic (cache, retrieval, generation)
-│   ├── config.py              # Central configuration (TOP_K, Models)
-│   ├── test_20.py             # 20-Question Automated Evaluator
-│   ├── ingest.py              # Pinecone Data Ingestion script
-│   └── requirements.txt       # Python dependencies
-├── frontend/
-│   ├── src/
-│   │   ├── components/        # React components (AnswerCard, LoadingSpinner)
-│   │   ├── pages/             # Main views (HomePage)
-│   │   └── index.css          # Design system and aesthetic styling
-│   ├── package.json           # Node dependencies
-│   └── vite.config.js         # Frontend build configuration
-└── README.md                  # This documentation
-```
+Cache hit rate directly impacts cost. At 50% cache hit rate (common for popular queries), the LLM cost above halves.
