@@ -48,11 +48,15 @@ function formatText(text) {
         </ul>
       );
     }
-    // Single newlines inside paragraphs shouldn't break the paragraph, but we can preserve them using <br/> if needed, 
-    // or rely on the container's standard text flow.
+    // If the paragraph doesn't look like a list, render it with <br/> for single newlines
     return (
       <p key={`p-${pIndex}`} className="answer-paragraph">
-        {renderInlineFormatting(paragraph)}
+        {paragraph.split('\n').map((line, lineIdx, arr) => (
+          <React.Fragment key={`br-${pIndex}-${lineIdx}`}>
+            {renderInlineFormatting(line)}
+            {lineIdx < arr.length - 1 && <br />}
+          </React.Fragment>
+        ))}
       </p>
     );
   });

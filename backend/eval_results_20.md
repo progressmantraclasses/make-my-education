@@ -8,17 +8,16 @@
 
 ```json
 {
-  "answer": "With a 76 % score you meet the minimum cut‑off for **Himalayan College of Engineering (C003)** (cut‑off 75 %) and **Terai Technical University (C009)** (cut‑off 70 %). However, both institutions charge more than your ₹1 lakh per‑year budget:\n\n- **Himalayan College of Engineering (C003)** – ₹**132,000** per academic year. In addition, hostel and mess charges are levied separately, so the total cost will be even higher.\n- **Terai Technical University (C009)** – ₹**118,000** per academic year, with separate hostel and mess fees.\n\nNo engineering college in the dataset offers a tuition fee of ₹1 lakh or less. If you are flexible on the cut‑off or willing to explore scholarships, you might still consider these schools, but strictly speaking they exceed your budget.\n\nIf you would like to explore:\n- Colleges with lower tuition that still accept a 76 % score,\n- Scholarship or fee‑waiver options that could bring the cost within ₹1 lakh,\n- Alternative courses (e.g., diploma or polytechnic) that fit your budget,\n\nfeel free to let me know!",
+  "answer": "None of the engineering colleges in the dataset meet both your budget and eligibility criteria. The only engineering college whose tuition is below ₹1 lakh per year is **Ambedkar National Institute (C012)**, which charges **₹45,000** for the academic year. However, its hard‑minimum cutoff is **88 %**, which is higher than your 76 % score, so you would not be eligible for admission. All other engineering colleges (Himalayan College of Engineering, North Ridge Institute of Technology, and Terai Technical University) have tuition fees above ₹1 lakh per year, and they also have cutoffs above 76 %. Additionally, Ambedkar National Institute requires hostel accommodation, but the hostel fee is not specified in the provided information, so the total cost could be higher than the tuition alone.",
   "citations": [
-    "C003",
-    "C009"
+    "C012"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "Are you interested in engineering colleges that offer scholarships or fee waivers to bring the cost below ₹1 lakh?",
-    "Would you consider colleges with a slightly higher cut‑off but lower tuition fees?",
-    "Do you want information on diploma or polytechnic engineering programs that fit your budget?"
+    "What are the hostel fees for Ambedkar National Institute (C012)?",
+    "Which engineering colleges in Uttarakhand have a cutoff below 76 %?",
+    "What are the placement statistics for Ambedkar National Institute (C012)?"
   ]
 }
 ```
@@ -30,16 +29,16 @@
 
 ```json
 {
-  "answer": "The only government college in the dataset that holds the top NAAC grade is **Ambedkar National Institute (C012)**, which has an **A+** rating. No other government institution in the list matches this grade.\n\n* **Ambedkar National Institute (C012)** – NAAC: **A+**\n\nAll other government colleges listed have lower NAAC grades: **A** (Haldwani Law College), **B+** (Shivalik Government Polytechnic), and **B** (Kumaon Arts and Science College).\n",
+  "answer": "The only government college in the dataset that holds the highest NAAC grade is **Ambedkar National Institute (C012)**, which has an **A+** rating. All other government colleges listed have lower grades:\n- **Haldwani Law College (C011)** – A\n- **Shivalik Government Polytechnic (C005)** – B+\n- **Kumaon Arts and Science College (C007)** – B",
   "citations": [
     "C012"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "Which government colleges have NAAC grades close to A+?",
-    "What factors contribute to a college receiving an A+ NAAC rating?",
-    "How does the NAAC grade of a college affect student placement opportunities?"
+    "What are the placement statistics for **Ambedkar National Institute (C012)** compared to other government colleges?",
+    "What are the fee structures for **Ambedkar National Institute (C012)** and **Haldwani Law College (C011)**?",
+    "Which government colleges in the dataset have NAAC grades of A or higher?"
   ]
 }
 ```
@@ -51,16 +50,16 @@
 
 ```json
 {
-  "answer": "The oldest college in the dataset is **Kumaon Arts and Science College (C007)**, which was established in **1985**.",
+  "answer": "The oldest college in the dataset is **Kumaon Arts and Science College (C007)**, established in **1985**.",
   "citations": [
     "C007"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "What courses are offered at Kumaon Arts and Science College?",
-    "How does its fee structure compare to other colleges in the dataset?",
-    "What are the admission requirements for students interested in this college?"
+    "What are the fee structures and hostel availability for **Kumaon Arts and Science College (C007)** compared to other government degree colleges in Uttarakhand?",
+    "What entrance criteria and scholarship options are available for students applying to **Kumaon Arts and Science College (C007)**?",
+    "How does the placement record of **Kumaon Arts and Science College (C007)** compare to that of **Ambedkar National Institute (C012)**?"
   ]
 }
 ```
@@ -72,7 +71,7 @@
 
 ```json
 {
-  "answer": "**North Ridge Institute of Technology (C001)** – B.Tech in Computer Science & Engineering, Mechanical Engineering, Electronics & Communication Engineering. \n\n**Silver Peak School of Media (C015)** – Bachelor of Journalism & Mass Communication, Bachelor of Arts in Film, Master of Arts in Mass Communication. \n\n**Ganga Institute of Commerce (C014)** – Bachelor of Commerce, Bachelor of Business Administration, Master of Commerce, CA‑Foundation integrated course. \n\n**Doon Business School (C004)** – Bachelor of Business Administration, Master of Business Administration, Post‑Graduate Diploma in Management.\n\nAll of these institutions are located in Dehradun, Uttarakhand.",
+  "answer": "Courses offered in Dehradun include:\n- **North Ridge Institute of Technology (C001)** – B.Tech in Computer Science & Engineering, Mechanical Engineering, Electronics & Communication Engineering.\n- **Silver Peak School of Media (C015)** – Bachelor of Journalism & Mass Communication, Bachelor of Arts in Film, Master of Arts in Mass Communication.\n- **Ganga Institute of Commerce (C014)** – Bachelor of Commerce, Bachelor of Business Administration, Master of Commerce, CA Foundation.\n- **Doon Business School (C004)** – Bachelor of Business Administration, Master of Business Administration, Post Graduate Diploma in Management.",
   "citations": [
     "C001",
     "C015",
@@ -82,9 +81,9 @@
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "What are the admission criteria for each of these courses?",
-    "How much do hostel, mess, and other additional charges add to the annual tuition?",
-    "Which of these colleges offers the highest average placement package?"
+    "What are the admission criteria for B.Tech courses at North Ridge Institute of Technology?",
+    "What are the hostel and mess charges at Doon Business School?",
+    "What is the average placement package for BBA students at Ganga Institute of Commerce?"
   ]
 }
 ```
@@ -96,7 +95,7 @@
 
 ```json
 {
-  "answer": "**Do​on Business School (C004)** offers an MBA with an average placement package of **₹7.1 LPA**. The tuition fee is **₹175,000 per year** and the college requires a minimum 72% aggregate for admission. Placement recruiters are mainly mid‑sized consulting, insurance and FMCG firms, and the average is boosted by a few high offers.\n\n**Ganga Valley University (C002)** also provides an MBA, but its average placement package is lower at **₹4.2 LPA**. The annual tuition fee is **₹98,000** and the cutoff is 68% aggregate. Placements are concentrated in regional banking, retail and BPO roles.\n\n**Comparison**\n- **Average placement:** Doon Business School (7.1 LPA) > Ganga Valley University (4.2 LPA).\n- **Fees:** Doon Business School is more expensive (₹175,000) than Ganga Valley University (₹98,000).\n- **Cutoff:** Doon Business School has a higher entry threshold (72%) compared to Ganga Valley University (68%).\n- **Recruiter profile:** Doon’s recruiters are mid‑size consulting and FMCG firms, while Ganga Valley’s are mainly regional banks and BPOs.\n\nOverall, Doon Business School (C004) provides a higher average placement package but at a higher tuition cost and stricter cutoff.",
+  "answer": "**Doon Business School (C004)** offers an MBA with an average placement package of **₹7.1 LPA**. The annual tuition fee is **₹175,000** and the hard‑minimum cutoff is 72%. Hostel accommodation is compulsory in the first year, but no extra hostel or mess fees are listed in the data.\n\n**Ganga Valley University (C002)** also provides an MBA, reporting an average placement package of **₹4.2 LPA**. Its annual tuition fee is **₹98,000** with a cutoff of 68%. The university has three hostel blocks; additional hostel or mess charges are not detailed.\n\n**Comparison**\n- **Placement packages**: Doon Business School’s MBA graduates earn a higher average (7.1 LPA) than those from Ganga Valley University (4.2 LPA).\n- **Fees**: Doon Business School is more expensive by **₹77,000** per year.\n- **Cutoff**: Doon Business School requires a higher minimum aggregate (72%) compared with Ganga Valley University (68%).\n- **Hostel**: Both institutions provide on‑campus hostel facilities, but no extra costs are specified.\n\nOverall, if placement outcomes are the primary concern, **Doon Business School (C004)** leads, though it comes with a higher tuition fee.",
   "citations": [
     "C004",
     "C002"
@@ -104,9 +103,9 @@
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "What are the scholarship or fee concession options for MBA students at these colleges?",
-    "How do the MBA curricula and specializations differ between Doon Business School and Ganga Valley University?",
-    "What is the campus life and hostel availability like for MBA students at each institution?"
+    "What are the fee structures and any additional hostel or mess charges for Doon Business School and Ganga Valley University?",
+    "How do the placement companies and sectors differ between the MBA programs at Doon Business School and Ganga Valley University?",
+    "What scholarship or fee concession options are available for MBA students at Doon Business School and Ganga Valley University?"
   ]
 }
 ```
@@ -118,16 +117,16 @@
 
 ```json
 {
-  "answer": "Only **Ambedkar National Institute (C012)** offers a full fee waiver for students whose families earn less than ₹5 lakh per year. The institute’s policy states that tuition is waived in full for such students, covering the entire annual fee of **₹45,000**.\n\nNo other college in the provided dataset mentions a similar income‑based fee waiver.\n",
+  "answer": "The only college in the dataset that explicitly offers a full tuition waiver for families earning less than ₹5 lakh per year is **Ambedkar National Institute** (C012).",
   "citations": [
     "C012"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "What are the specific eligibility criteria and application steps for the fee waiver at Ambedkar National Institute?",
-    "Does Ambedkar National Institute provide additional scholarships or financial aid beyond the fee waiver?",
-    "Are there other colleges in Uttarakhand that offer scholarships or fee concessions for low‑income families?"
+    "What are the eligibility criteria and application process for the fee waiver at **Ambedkar National Institute**?",
+    "What other scholarships or financial aid options are available at **Ambedkar National Institute**?",
+    "Which other colleges in Uttarakhand offer partial fee concessions or scholarships for students from low‑income families?"
   ]
 }
 ```
@@ -139,18 +138,19 @@
 
 ```json
 {
-  "answer": "The following colleges in the dataset explicitly state that hostel accommodation is **compulsory** for their students:\n\n- **Ambedkar National Institute (C012)** – Hostel residence is compulsory for all undergraduates.\n- **Mussoorie College of Hotel Management (C010)** – Hostel accommodation is on campus and residence is compulsory due to early kitchen shifts.\n- **Nainital Institute of Medical Sciences (C006)** – Hostel residence is compulsory for all clinical‑year students.\n\nThese institutions require students to stay on campus (or in the designated hostel) as part of their admission/attendance conditions.",
+  "answer": "The following colleges require students to stay in campus hostels (or make hostel residence compulsory for a specific cohort):\n\n- **Ambedkar National Institute (C012)** – Hostel residence is compulsory for all undergraduates.\n- **Mussoorie College of Hotel Management (C010)** – Hostel accommodation is on campus and residence is compulsory due to early kitchen shifts.\n- **Nainital Institute of Medical Sciences (C006)** – Hostel residence is compulsory for all clinical‑year students.\n- **Doon Business School (C004)** – Hostel residence is compulsory in the first year.\n\nThese institutions explicitly state that hostel stay is mandatory for the mentioned groups.\n",
   "citations": [
     "C012",
     "C010",
-    "C006"
+    "C006",
+    "C004"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "What are the fee structures for these colleges?",
-    "Are there any scholarships available for students staying in the hostel?",
-    "How do the placement opportunities compare among these colleges?"
+    "What are the annual tuition fees for Ambedkar National Institute (C012) and Mussoorie College of Hotel Management (C010)?",
+    "Which of the listed colleges offer B.Tech programs with compulsory hostel accommodation?",
+    "What are the placement statistics for Doon Business School (C004) and Nainital Institute of Medical Sciences (C006)?"
   ]
 }
 ```
@@ -162,16 +162,16 @@
 
 ```json
 {
-  "answer": "The only college in the provided dataset that explicitly offers a corporate mentorship program is **Doon Business School (C004)**. It pairs each student with an alumnus from the corporate world as part of its PGDM and MBA tracks, providing guidance on career planning, industry exposure, and networking opportunities.\n\n- **Doon Business School (C004)** – Corporate mentorship track with alumni pairing; admission requires CAT, XAT or MAT scores plus a group discussion and interview; hostel residence is compulsory in the first year; average placement is **₹7.1 LPA**.\n\nNo other institution in the dataset mentions a structured corporate mentorship or alumni‑industry partnership program.",
+  "answer": "The only institution in the provided dataset that explicitly offers a corporate mentorship program is **Doon Business School (C004)**. It pairs each PGDM student with an alumnus mentor from the corporate sector as part of its mentorship track.\n\n- **Doon Business School (C004)** – Corporate mentorship track for PGDM cohort.\n\nNo other colleges in the dataset mention a formal corporate mentorship arrangement.\n",
   "citations": [
     "C004"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "What are the admission requirements for Doon Business School?",
-    "Are there other colleges with industry partnerships or internship programs?",
-    "What is the average placement package at Doon Business School?"
+    "What are the details of the corporate mentorship program at Doon Business School (C004)?",
+    "Which colleges in Uttarakhand offer industry internship opportunities for engineering students?",
+    "What are the admission requirements for the PGDM program at Doon Business School (C004)?"
   ]
 }
 ```
@@ -183,14 +183,14 @@
 
 ```json
 {
-  "answer": "None of the colleges listed in the provided context offer a B.Tech program in Biotechnology.",
+  "answer": "No college in the provided context offers B.Tech in Biotechnology.",
   "citations": [],
   "answered": false,
-  "reason_if_unanswered": "No B.Tech Biotechnology program is listed for any college in the dataset.",
+  "reason_if_unanswered": "No college in the provided context offers B.Tech in Biotechnology.",
   "follow_up_questions": [
-    "Are you looking for B.Sc or M.Sc programs in Biotechnology?",
-    "Would you like information on B.Tech programs in other engineering disciplines?",
-    "Do you need details about admission criteria for the colleges you are interested in?"
+    "Which colleges in Uttarakhand offer B.Tech in Computer Science Engineering?",
+    "Which colleges in Uttarakhand offer B.Tech in Mechanical Engineering?",
+    "Which colleges in Uttarakhand offer B.Tech in Electrical Engineering?"
   ]
 }
 ```
@@ -202,16 +202,16 @@
 
 ```json
 {
-  "answer": "**Mussoorie College of Hotel Management (C010)** charges a few extra fees beyond the annual tuition:\n- **Uniform, knife‑roll, and kit charge** applicable in the first year.\n- **Hostel accommodation** is on‑campus and **compulsory** for all students due to early kitchen shifts.\n\nThese are the only additional charges explicitly mentioned in the college’s description.",
+  "answer": "**Mussoorie College of Hotel Management** (C010) lists the following additional charges beyond the stated annual tuition:\n\n- **Uniform, knife‑roll and kit charge** applied in the first year.\n- **Hostel accommodation** on campus, which is compulsory for all students due to early kitchen shifts.\n\nThese fees are not included in the ₹165,000/year tuition figure.\n",
   "citations": [
     "C010"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "What is the annual tuition fee for Mussoorie College of Hotel Management?",
-    "Are there any scholarships or fee waivers available for students?",
-    "What is the placement scenario for graduates of this college?"
+    "What is the annual tuition fee for **Mussoorie College of Hotel Management**?",
+    "What are the hostel charges and mess fees at **Mussoorie College of Hotel Management**?",
+    "What are the placement salary ranges for graduates of **Mussoorie College of Hotel Management**?"
   ]
 }
 ```
@@ -223,7 +223,7 @@
 
 ```json
 {
-  "answer": "None of the government colleges listed in the dataset lack hostel facilities. Both **Ambedkar National Institute (C012)** and **Kumaon Arts and Science College (C007)** provide hostel accommodation for their undergraduates.",
+  "answer": "None of the government colleges listed in the dataset provide hostel facilities.",
   "citations": [
     "C012",
     "C007"
@@ -231,9 +231,9 @@
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "Are there private colleges in the area that do not offer hostel facilities?",
-    "What are the hostel fees and amenities at Ambedkar National Institute and Kumaon Arts and Science College?",
-    "Do any of these colleges offer scholarships or subsidies for hostel accommodation?"
+    "Which government colleges offer hostel facilities?",
+    "What are the hostel charges for **Ambedkar National Institute (C012)**?",
+    "What are the hostel charges for **Kumaon Arts and Science College (C007)**?"
   ]
 }
 ```
@@ -245,16 +245,16 @@
 
 ```json
 {
-  "answer": "Yes. **Himalayan College of Engineering** (C003) offers a **15% fee concession** to female students in all branches. The concession is applied to the annual tuition fee of **₹132,000**, reducing it to **₹112,200** for eligible female applicants. No other colleges in the dataset mention a gender‑specific fee concession.\n\nIf you’re looking for additional financial aid, you can explore need‑based scholarships or other concessions that some institutions provide, but they are not gender‑specific.\n",
+  "answer": "Yes. **Himalayan College of Engineering (C003)** offers a **15 % fee concession** to female students in all branches. No other college in the provided dataset mentions a specific fee concession for female students.",
   "citations": [
     "C003"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "Are there any other scholarships or fee concessions for students from low‑income families?",
-    "What is the application process for the female fee concession at Himalayan College of Engineering?",
-    "Do any other colleges offer concessions for categories such as SC/ST or reserved seats?"
+    "What is the full fee structure for male and female students at Himalayan College of Engineering (C003)?",
+    "Are there additional financial aid options for students from low‑income families at Himalayan College of Engineering (C003)?",
+    "What are the admission requirements for the B.Tech programs at Himalayan College of Engineering (C003)?"
   ]
 }
 ```
@@ -266,16 +266,16 @@
 
 ```json
 {
-  "answer": "No – the 75 % cutoff is a hard minimum. A student with 74 % would not meet the eligibility requirement for a college that lists 75 % as its last‑year cutoff. For example, **Himalayan College of Engineering (C003)** requires a minimum of 75 % in Class 12, so a 74 % score falls short of that threshold.",
+  "answer": "No. The cutoff of **Himalayan College of Engineering** (C003) is a hard minimum of 75% aggregate marks. A student with 74% does not meet this requirement and would not be eligible for admission there.",
   "citations": [
     "C003"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "Which colleges in Uttarakhand have cutoffs below 74 % for engineering courses?",
-    "Are there any management quotas or special admission schemes that could allow a 74 % student to enroll?",
-    "What are the typical entrance exam requirements for engineering colleges with a 75 % cutoff?"
+    "What are the admission requirements for **Himalayan College of Engineering** (C003)?",
+    "Which colleges in Uttarakhand have a cutoff below 74% for engineering courses?",
+    "What scholarship options are available for students scoring below the cutoff at **Himalayan College of Engineering** (C003)?"
   ]
 }
 ```
@@ -287,7 +287,7 @@
 
 ```json
 {
-  "answer": "Engineering degrees that cost **less than ₹60,000 per semester** (i.e., **annual fee < ₹120,000**) are offered by:\n\n- **Terai Technical University (C009)** – B.Tech in CSE, ME, MCA, M.Tech. Annual tuition is **₹118,000**, so per semester it is **≈ ₹59,000** (assuming two equal semesters per year). Hostel and mess are charged separately, but hostel places are guaranteed for all first‑year students.\n\n- **Ambedkar National Institute (C012)** – B.Tech, B.Arch, M.Tech. Annual tuition is **₹45,000**, giving a per‑semester cost of **≈ ₹22,500** (again assuming two equal semesters). Hostel residence is compulsory for undergraduates and is billed separately.\n\nBoth institutions meet the budget criterion for engineering degrees. No other engineering colleges in the dataset have an annual fee below ₹120,000.\n\n**Citations**: C009, C012",
+  "answer": "Terai Technical University (C009) charges **₹118,000** per academic year, which works out to **≈ ₹59,000/semester** (assuming two equal semesters). Ambedkar National Institute (C012) charges **₹45,000** per academic year, or **≈ ₹22,500/semester**. Both of these engineering degree programmes are therefore below the ₹60,000‑per‑semester threshold you asked about. The other engineering colleges in the dataset—Himalayan College of Engineering (C003) and North Ridge Institute of Technology (C001)—have annual fees that translate to **≈ ₹66,000** and **≈ ₹72,500** per semester, respectively, and thus exceed the limit.\n\nNote that the annual fee figures exclude hostel, mess, lab, studio, kit, and other charges, which may be additional costs for students.\n",
   "citations": [
     "C009",
     "C012"
@@ -295,9 +295,9 @@
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "Are you interested in the hostel and mess charges for these colleges?",
-    "Would you like to know about scholarship or fee concession options at these institutions?",
-    "Do you need information on placement statistics or industry connections for these colleges?"
+    "What are the hostel and mess charges for Terai Technical University (C009)?",
+    "What is the minimum cutoff percentage required for admission to Ambedkar National Institute (C012)?",
+    "How do the placement statistics of Terai Technical University (C009) compare to Ambedkar National Institute (C012)?"
   ]
 }
 ```
@@ -309,16 +309,16 @@
 
 ```json
 {
-  "answer": "**Shivalik Government Polytechnic (C005)** does not offer a B.Tech degree. It provides only three‑year diploma programmes in CSE, ME, and Civil Engineering, and diploma holders typically enter the second year of a degree programme elsewhere through lateral entry.",
+  "answer": "**Shivalik Government Polytechnic (C005)** does not offer a B.Tech degree; it only offers three‑year diploma programmes in CSE, ME and Civil. Tuition is **₹22,000** per year and there is no hostel on campus.",
   "citations": [
     "C005"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "What diploma courses are available at Shivalik Polytechnic?",
-    "How can a diploma holder from Shivalik Polytechnic pursue a B.Tech laterally?",
-    "What are the tuition and hostel costs for the diploma programmes?"
+    "What diploma programmes are offered at **Shivalik Government Polytechnic (C005)**?",
+    "What is the tuition fee and hostel arrangement for **Shivalik Government Polytechnic (C005)**?",
+    "What are the placement opportunities for diploma graduates from **Shivalik Government Polytechnic (C005)**?"
   ]
 }
 ```
@@ -330,16 +330,16 @@
 
 ```json
 {
-  "answer": "The **Nainital Institute of Medical Sciences (C006)** lists its average placement as **0 LPA** because campus placement data is not applicable for medical colleges.  Graduates of MBBS and BDS programs do not receive campus offers; instead they complete a compulsory rotating internship and then pursue postgraduate entrance exams or clinical practice.  The tuition figure shown covers only the academic year and excludes hostel, mess, and clinical material charges, which are additional costs for students.\n\n**Key points**\n- Medical colleges typically do not have a campus placement cell.\n- Placement figures are therefore marked as *not reported / not applicable*.\n- Students’ career progression is through internships and subsequent PG entrance exams.\n\n**Citations**: C006",
+  "answer": "The **Nainital Institute of Medical Sciences (C006)** shows an average placement of **0 LPA** because placement data is not applicable for medical colleges. MBBS and BDS graduates do not participate in campus recruitment; instead they complete a compulsory rotating internship and then pursue postgraduate entrance exams or clinical practice. Consequently, the institution does not report placement figures, and the 0 LPA entry simply indicates that placement data is not applicable rather than a poor placement record.",
   "citations": [
     "C006"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "What are the hostel and mess charges for NIMS?",
-    "How does the admission process for MBBS at NIMS work?",
-    "What are the typical career paths after completing an MBBS at NIMS?"
+    "What are the hostel and mess charges for students at the **Nainital Institute of Medical Sciences (C006)**?",
+    "How does the annual tuition fee of the **Nainital Institute of Medical Sciences (C006)** compare to other medical colleges in Uttarakhand?",
+    "What are the internship and clinical material charges for MBBS students at the **Nainital Institute of Medical Sciences (C006)**?"
   ]
 }
 ```
@@ -351,17 +351,17 @@
 
 ```json
 {
-  "answer": "No, they are distinct institutions. **Ganga Institute of Commerce (C014)** is a private commerce college located in Dehradun, while **Ganga Valley University (C002)** is a private university situated in Haridwar. They are separately managed and often confused because of the similarity in their names, but they offer different programmes and have different admission processes.",
+  "answer": "No, they are not the same institution. **Ganga Valley University (C002)** is a private university located in Haridwar, while **Ganga Institute of Commerce (C014)** is a separate private commerce institute situated in Dehradun. The two schools are independently managed and offer different programs.\n\n**Citations:** C002, C014",
   "citations": [
-    "C014",
-    "C002"
+    "C002",
+    "C014"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "What are the main differences in courses offered by each institution?",
-    "How do the fee structures of Ganga Institute of Commerce and Ganga Valley University compare?",
-    "What are the admission criteria for each college?"
+    "What are the fee structures for Ganga Valley University and Ganga Institute of Commerce?",
+    "What are the admission cutoffs for Ganga Valley University and Ganga Institute of Commerce?",
+    "What are the placement averages for Ganga Valley University and Ganga Institute of Commerce?"
   ]
 }
 ```
@@ -373,16 +373,16 @@
 
 ```json
 {
-  "answer": "**Terai Technical University (C009)** – a deemed‑to‑be university in Rudrapur, Uttarakhand, offers a range of engineering programmes such as B.Tech in Computer Science & Engineering and Mechanical Engineering, as well as postgraduate courses in MCA and M.Tech. It is the only institution in the provided data that meets both criteria of being a deemed university and offering engineering courses.\n\n*Key details:* \n- **Annual tuition:** **₹118,000** per academic year (hostel and mess charges are separate). \n- **Cutoff:** 70 % aggregate (hard minimum). \n- **Hostel:** Available for all first‑year students.\n- **Placements:** Average of 6.0 LPA.\n\nThis is the sole deemed university listed that offers engineering programmes.\n",
+  "answer": "The only institution in the provided data that is a deemed‑to‑be university and offers engineering programmes is **Terai Technical University (C009)**. It offers B.Tech in Computer Science & Engineering and Mechanical Engineering, as well as M.Tech and MCA programmes.",
   "citations": [
     "C009"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "What are the admission requirements for the B.Tech programmes at Terai Technical University?",
-    "How does the placement support differ between the undergraduate and postgraduate courses at this university?",
-    "Are there any scholarship options available for students at Terai Technical University?"
+    "What are the annual tuition fees for **Terai Technical University (C009)**?",
+    "What are the average placement statistics for **Terai Technical University (C009)**?",
+    "Which entrance examinations are accepted for admission to **Terai Technical University (C009)**?"
   ]
 }
 ```
@@ -394,16 +394,16 @@
 
 ```json
 {
-  "answer": "**Himalayan College of Engineering (C003)** offers a **15%** fee concession to female students in all branches.",
+  "answer": "**Himalayan College of Engineering (C003)** offers a **15% fee concession** to female students in all branches.\n",
   "citations": [
     "C003"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "What are the eligibility criteria for the fee concession at HCE?",
-    "How does the fee concession affect the overall cost of a B.Tech program at HCE?",
-    "Are there any additional scholarships or financial aid options available for female students at HCE?"
+    "What are the hostel charges at Himalayan College of Engineering (C003)?",
+    "What is the average placement salary for B.Tech Civil students at Himalayan College of Engineering (C003)?",
+    "Which entrance exam is required for admission to Himalayan College of Engineering (C003)?"
   ]
 }
 ```
@@ -415,16 +415,16 @@
 
 ```json
 {
-  "answer": "For an engineering program with a yearly budget of ₹80,000 and no requirement for hostel accommodation, the only college in the dataset that meets the fee criterion is **Ambedkar National Institute (C012)**. It offers B.Tech and M.Tech programmes, charges **₹45,000** per academic year, and provides hostel facilities (though you can study off‑campus if you wish). The institute has a high admission cutoff of 88 % and reports an average placement package of **₹8.4 LPA**.\n\nNo other engineering colleges in the list have annual fees at or below ₹80,000, so you would need to consider either this institution or look beyond the provided data.\n\n**Key points**:\n- **Ambedkar National Institute (C012)** – B.Tech, M.Tech\n- Annual tuition: **₹45,000**\n- Hostel available but optional\n- Cutoff: 88 % (hard minimum)\n- Avg placement: **₹8.4 LPA**\n- NAAC rating: A+",
+  "answer": "For an engineering program with a budget of ₹80,000 per year and no need for hostel accommodation, the only institution in the dataset that meets the fee criterion is **Ambedkar National Institute (C012)**.  Its annual tuition is **₹45,000**, well below your ₹80,000 limit.  The college offers B.Tech, B.Arch, and M.Tech programmes and provides hostel facilities, but staying on campus is optional—students can commute or arrange off‑campus housing if they prefer.\n\nOther engineering colleges listed—**Himalayan College of Engineering (C003)**, **North Ridge Institute of Technology (C001)**, and **Terai Technical University (C009)**—have annual fees of ₹132,000, ₹145,000, and ₹118,000 respectively, all exceeding your budget.\n\n**Key points for Ambedkar National Institute (C012):**\n- **Annual fee:** **₹45,000** (tuition only; hostel and other charges are separate but optional).\n- **Hostel:** Available but not mandatory.\n- **Cutoff:** 88% aggregate (hard minimum).\n- **Placements:** Average package of **₹8.4 LPA**.\n- **Scholarships:** Full fee waiver for students from families earning below ₹5 lakh per annum.\n- **Admission:** JEE Main rank for B.Tech and NATA for B.Arch.\n\nThus, Ambedkar National Institute is the sole engineering college in the dataset that fits your budget and hostel preference.\n",
   "citations": [
     "C012"
   ],
   "answered": true,
   "reason_if_unanswered": null,
   "follow_up_questions": [
-    "What are the admission requirements for the B.Tech programme at Ambedkar National Institute?",
-    "Are there scholarship options available for students from low‑income families at this college?",
-    "How does the placement process work for engineering students at Ambedkar National Institute?"
+    "What are the placement statistics for Ambedkar National Institute?",
+    "Are there any scholarships available for students at Ambedkar National Institute?",
+    "What are the admission requirements for B.Tech at Ambedkar National Institute?"
   ]
 }
 ```

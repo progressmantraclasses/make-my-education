@@ -113,7 +113,9 @@ def run_query(query: str) -> dict[str, Any]:
     )
 
     # ── Step 6: Cache write ────────────────────────────────────────────────────
-    cache_set(redis_client, query_cache_key, response_dict)
+    # Only cache successful responses (avoid poisoning the cache with API failures)
+    if response_dict.get("reason_if_unanswered") != "Failed to parse LLM response as JSON.":
+        cache_set(redis_client, query_cache_key, response_dict)
 
     # ── Step 7: Log ────────────────────────────────────────────────────────────
     latency_ms = (time.perf_counter() - pipeline_start_time) * 1000

@@ -137,21 +137,33 @@ def generate_answer(
 
     groq_client = Groq(api_key=config.GROQ_API_KEY, max_retries=5, timeout=30.0)
 
-    groq_response = groq_client.chat.completions.create(
-        model=groq_model_name,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user",   "content": query},
-        ],
-        response_format={"type": "json_object"},
-        temperature=0.1,
-        max_tokens=1024,
-    )
+    max_attempts = 3
+    for attempt in range(max_attempts):
+        try:
+            groq_response = groq_client.chat.completions.create(
+                model=groq_model_name,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user",   "content": query},
+                ],
+                response_format={"type": "json_object"},
+                temperature=0.1,
+                max_tokens=1024,
+            )
 
-    raw_llm_text = groq_response.choices[0].message.content or "{}"
-    input_token_count  = groq_response.usage.prompt_tokens     if groq_response.usage else 0
-    output_token_count = groq_response.usage.completion_tokens if groq_response.usage else 0
+            raw_llm_text = groq_response.choices[0].message.content or "{}"
+            input_token_count  = groq_response.usage.prompt_tokens     if groq_response.usage else 0
+            output_token_count = groq_response.usage.completion_tokens if groq_response.usage else 0
 
-    response_dict = parse_llm_response(raw_llm_text)
+            response_dict = parse_llm_response(raw_llm_text)
+            
+            # If parsing succeeds without falling back to the error dict, return it
+            if response_dict.get("reason_if_unanswered") != "Failed to parse LLM response as JSON.":
+                return response_dict, input_token_count, output_token_count
 
-    return response_dict, input_token_count, output_token_count
+        except Exception as e:
+            if attempt == max_attempts - 1:
+                print(f"LLM Generation failed after {max_attempts} attempts: {e}")
+                return parse_llm_response("{}"), 0, 0
+
+    return parse_llm_response("{}"), 0, 0
