@@ -35,7 +35,7 @@ PINECONE_REGION = "us-east-1"
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
 # ── Groq LLM ──────────────────────────────────────────────────────────────────
-GROQ_MODEL_SMALL = "openai/gpt-oss-20b"
+GROQ_MODEL_SMALL = "groq/compound-mini"
 GROQ_MODEL_LARGE = "openai/gpt-oss-120b"
 USE_LARGE_MODEL = os.getenv("USE_LARGE_MODEL", "false").lower() == "true"
 

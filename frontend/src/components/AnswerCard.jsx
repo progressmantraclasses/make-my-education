@@ -10,57 +10,8 @@
  *   reasonIfUnanswered (str): explanation when answered=false
  */
 import React from 'react';
-
-function renderInlineFormatting(text) {
-  // Split by **bold**, *italic*, or `code`
-  const parts = text.split(/(\*\*.*?\*\*|\*.*?\*|`.*?`)/g);
-
-  return parts.map((part, index) => {
-    if (part.startsWith('**') && part.endsWith('**')) {
-      return <strong key={index}>{part.slice(2, -2)}</strong>;
-    }
-    if (part.startsWith('*') && part.endsWith('*')) {
-      return <em key={index}>{part.slice(1, -1)}</em>;
-    }
-    if (part.startsWith('`') && part.endsWith('`')) {
-      return <code key={index} className="inline-code">{part.slice(1, -1)}</code>;
-    }
-    return part;
-  });
-}
-
-function formatText(text) {
-  if (!text) return null;
-
-  // Split text into paragraphs based on double newlines
-  const paragraphs = text.split(/\n\n+/);
-
-  return paragraphs.map((paragraph, pIndex) => {
-    // If it looks like a list (lines starting with - or *)
-    if (/^[\-\*]\s/m.test(paragraph)) {
-      const listItems = paragraph.split('\n').filter(line => line.trim());
-      return (
-        <ul key={`p-${pIndex}`} className="answer-list">
-          {listItems.map((item, iIndex) => {
-            const cleanItem = item.replace(/^[\-\*]\s+/, '');
-            return <li key={`li-${iIndex}`}>{renderInlineFormatting(cleanItem)}</li>;
-          })}
-        </ul>
-      );
-    }
-    // If the paragraph doesn't look like a list, render it with <br/> for single newlines
-    return (
-      <p key={`p-${pIndex}`} className="answer-paragraph">
-        {paragraph.split('\n').map((line, lineIdx, arr) => (
-          <React.Fragment key={`br-${pIndex}-${lineIdx}`}>
-            {renderInlineFormatting(line)}
-            {lineIdx < arr.length - 1 && <br />}
-          </React.Fragment>
-        ))}
-      </p>
-    );
-  });
-}
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 export default function AnswerCard({
   queryText,
   answer,
@@ -85,9 +36,11 @@ export default function AnswerCard({
 
       {/* Answer body */}
       <div className="answer-card__body">
-        <div className="answer-card__text">
-          {formatText(answer)}
-        </div>
+            <div className="answer-text markdown-body">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {answer}
+              </ReactMarkdown>
+            </div>
 
         {!answered && reasonIfUnanswered && (
           <p className="answer-card__reason">
@@ -122,7 +75,11 @@ export default function AnswerCard({
                 onClick={() => onFollowUpClick && onFollowUpClick(q)}
               >
                 <span className="followup-item__icon">↳</span>
-                <span className="followup-item__text">{q}</span>
+                <span className="followup-item__text">
+                  <ReactMarkdown components={{ p: 'span' }} remarkPlugins={[remarkGfm]}>
+                    {q}
+                  </ReactMarkdown>
+                </span>
               </button>
             ))}
           </div>

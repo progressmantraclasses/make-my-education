@@ -53,13 +53,9 @@ def main():
         try:
             parsed = json.loads(output)
             is_answered = parsed.get("answered", False)
-            # Question 9 is out of scope (Biotechnology), so it should gracefully refuse (answered = false)
-            if i == 9:
-                if not is_answered:
-                    status = "✅ PASS"
-            else:
-                if is_answered:
-                    status = "✅ PASS"
+            
+            if is_answered:
+                status = "✅ PASS"
         except Exception:
             pass # Failed to parse JSON or other error
             
@@ -71,8 +67,14 @@ def main():
         lines.append(f"```json\n{output}\n```\n")
         lines.append("---\n")
         print(f"  {status}")
+        
+        # Progressive save
+        with open("eval_results_20.md", "w", encoding="utf-8") as f:
+            f.write("\n".join(lines))
+            
         time.sleep(6)  # Avoid rate limits from custom proxy
         
+    # Final save with overall score at the top
     lines.insert(1, f"**Overall Score:** {passed_count}/{len(QUESTIONS)} Passed\n\n")
     
     with open("eval_results_20.md", "w", encoding="utf-8") as f:

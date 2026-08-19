@@ -117,6 +117,14 @@ body {
   padding: 20px 20px 12px;
   display: flex;
   align-items: center;
+  /* Markdown Structure Formatting */
+  .markdown-body table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+  .markdown-body th, .markdown-body td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+  .markdown-body th { background-color: #f8f9fa; font-weight: bold; }
+  .markdown-body tr:nth-child(even) { background-color: #fcfcfc; }
+  .markdown-body ul, .markdown-body ol { margin-left: 20px; margin-bottom: 15px; }
+  .markdown-body h1, .markdown-body h2, .markdown-body h3 { margin-top: 20px; margin-bottom: 10px; color: #1a1a1a; }
+  .markdown-body p { margin-bottom: 15px; line-height: 1.6; }
   gap: 3px;
   font-family: var(--font-display);
   font-size: 1rem;
@@ -1028,11 +1036,16 @@ body {
     font-size: 2.2rem;
   }
 
-  .answer-card {
-    padding: 20px;
-  }
-
   .input-wrapper {
     padding: 12px 14px;
   }
 }
+
+/* Markdown Structure Formatting */
+.markdown-body table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+.markdown-body th, .markdown-body td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+.markdown-body th { background-color: #f8f9fa; font-weight: bold; }
+.markdown-body tr:nth-child(even) { background-color: #fcfcfc; }
+.markdown-body ul, .markdown-body ol { margin-left: 20px; margin-bottom: 15px; }
+.markdown-body h1, .markdown-body h2, .markdown-body h3 { margin-top: 20px; margin-bottom: 10px; color: #1a1a1a; }
+.markdown-body p { margin-bottom: 15px; line-height: 1.6; }

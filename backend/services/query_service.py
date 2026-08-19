@@ -114,7 +114,9 @@ def run_query(query: str) -> dict[str, Any]:
 
     # ── Step 6: Cache write ────────────────────────────────────────────────────
     # Only cache successful responses (avoid poisoning the cache with API failures)
-    if response_dict.get("reason_if_unanswered") != "Failed to parse LLM response as JSON.":
+    reason = response_dict.get("reason_if_unanswered")
+    answer = response_dict.get("answer")
+    if reason != "Failed to parse LLM response as JSON." and answer != "System Error":
         cache_set(redis_client, query_cache_key, response_dict)
 
     # ── Step 7: Log ────────────────────────────────────────────────────────────

@@ -8,6 +8,7 @@ Responsibility: LLM answer generation only.
 """
 
 import json
+import re
 from typing import Any
 
 from groq import Groq
@@ -33,13 +34,15 @@ STRICT RULES:
 
 6. **Diplomas vs Degrees**: A Diploma is NOT a degree. Diploma-only institutions (like polytechnics) should NOT be included when the user asks about "engineering colleges" or "degree colleges" unless the user explicitly asks about diplomas or polytechnics. Shivalik Government Polytechnic (C005) awards diplomas only, not B.Tech or any degree.
 
-7. **Out of scope (CRITICAL)**: If the user asks for a field, course (e.g. Biotechnology), college, or topic NOT present in the provided context, you MUST set "answered": false, "citations": [], and provide the reason in "reason_if_unanswered". Do NOT set "answered": true and say "No, it is not offered". "answered": false is mandatory for anything missing from the data.
+7. **Out of scope & Empty Sets (CRITICAL)**: If the data answers the question by confirming that 0 colleges match a criteria (e.g., "no colleges offer this" or "no colleges don't have a hostel"), you MUST set "answered": true, because you successfully answered the question! ONLY set "answered": false if the user's topic itself is completely unrelated/out-of-scope to the dataset and you cannot generate an answer at all. When "answered": false, provide the reason in "reason_if_unanswered".
 
-8. **Formatting**: You MUST wrap all College Names and Annual Fee amounts in **double asterisks** to bold them (e.g., **Indian Institute of Technology**, **₹2,00,000**). CRITICAL: Present your answer neatly using short paragraphs, bullet points, and line breaks for comparisons or lists. Never output a single dense block of text. Make the data easy to scan and read.
+8. **Direct Answer First (BLUF)**: Always give the direct, definitive answer in the very first sentence at the top. If 0 colleges match the criteria, state it immediately (e.g., "None of the colleges in the data match this criteria."). Provide your tables, lists, or detailed explanations ONLY AFTER the direct answer. Never put the conclusion at the bottom.
 
-9. **Follow-ups**: Always generate 3 logical follow-up questions that the user might want to ask next. CRITICAL: The follow-up questions must be completely self-contained and explicit. Do NOT use pronouns like "these", "those", "it", or "this college". Explicitly name the colleges or entities you are referring to, so the question can be understood entirely on its own without prior conversation history (e.g., "What are the fee structures for Doon Business School and Ganga Valley University?" instead of "What are the fees for these colleges?").
+9. **Formatting & Structure (CRITICAL)**: You MUST format your answer using rich Markdown. Use **Markdown Tables** for comparisons between colleges. Use **Bold Headers** (###) to separate different parts of your answer. Use bullet points for lists. Wrap all College Names and Annual Fee amounts in **double asterisks** to bold them. Do NOT include the raw college IDs (like (C012), (C007)) in your visible text or follow-up questions; just use the college names. Never output a single dense block of text; your output must be a highly structured, scannable, and professional response.
 
-10. **Response format**: You MUST respond with a valid JSON object with exactly these fields:
+10. **Follow-ups**: Always generate 3 logical follow-up questions that the user might want to ask next. CRITICAL: The follow-up questions must be completely self-contained and explicit. Do NOT use pronouns like "these", "those", "it", or "this college". Explicitly name the colleges or entities you are referring to. Do NOT include or mention the follow-up questions inside your main `"answer"` text string; they must ONLY be placed in the `"follow_up_questions"` JSON array.
+
+11. **Response format**: You MUST respond with a valid JSON object with exactly these fields:
 {{
   "answer": "Your detailed answer text here",
   "citations": ["C001", "C002"],
@@ -88,12 +91,21 @@ def build_system_prompt(context_str: str, unit_instruction: str) -> str:
     )
 
 
-def parse_llm_response(raw_llm_text: str) -> dict[str, Any]:
+def parse_llm_response(raw_llm_text: str, force_error_reason: str = None) -> dict[str, Any]:
     """Parse raw LLM text into the required response dict.
 
     On JSON parse failure: wraps the raw text in a safe fallback dict.
     Always ensures all 4 required fields exist.
     """
+    if force_error_reason:
+        return {
+            "answer": "System Error",
+            "citations": [],
+            "answered": False,
+            "reason_if_unanswered": force_error_reason,
+            "follow_up_questions": []
+        }
+
     try:
         parsed = json.loads(raw_llm_text)
     except json.JSONDecodeError:
@@ -111,6 +123,14 @@ def parse_llm_response(raw_llm_text: str) -> dict[str, Any]:
     parsed.setdefault("answered", True)
     parsed.setdefault("reason_if_unanswered", None)
     parsed.setdefault("follow_up_questions", [])
+
+    # Post-process: strip raw college IDs like (C012) from the text to ensure frontend cleanliness
+    parsed["answer"] = re.sub(r"\s*\(C\d{3}\)", "", parsed["answer"])
+    
+    clean_followups = []
+    for q in parsed["follow_up_questions"]:
+        clean_followups.append(re.sub(r"\s*\(C\d{3}\)", "", str(q)))
+    parsed["follow_up_questions"] = clean_followups
 
     return parsed
 
@@ -139,16 +159,19 @@ def generate_answer(
 
     max_attempts = 3
     for attempt in range(max_attempts):
+        # Use the requested model for the first attempt, fallback to LARGE model on retries
+        current_model = groq_model_name if attempt == 0 else config.GROQ_MODEL_LARGE
+        
         try:
             groq_response = groq_client.chat.completions.create(
-                model=groq_model_name,
+                model=current_model,
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user",   "content": query},
                 ],
                 response_format={"type": "json_object"},
                 temperature=0.1,
-                max_tokens=1024,
+                max_tokens=2048,
             )
 
             raw_llm_text = groq_response.choices[0].message.content or "{}"
@@ -164,6 +187,14 @@ def generate_answer(
         except Exception as e:
             if attempt == max_attempts - 1:
                 print(f"LLM Generation failed after {max_attempts} attempts: {e}")
-                return parse_llm_response("{}"), 0, 0
+                
+                # Extract a friendly error message
+                error_msg = str(e)
+                if "rate_limit_exceeded" in error_msg.lower() or "429" in error_msg:
+                    reason = "API Rate Limit Exceeded. Please try again in a few minutes."
+                else:
+                    reason = f"API Error: {error_msg}"
+                
+                return parse_llm_response("", force_error_reason=reason), 0, 0
 
-    return parse_llm_response("{}"), 0, 0
+    return parse_llm_response("", force_error_reason="Max retries reached."), 0, 0
