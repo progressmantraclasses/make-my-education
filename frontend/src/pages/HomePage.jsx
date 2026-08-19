@@ -2,7 +2,7 @@
  * HomePage.jsx
  * Responsibility: Compose the home page — manages query state, API call, history.
  */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import AnswerCard from "../components/AnswerCard";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -11,10 +11,10 @@ import { postQuery } from "../api/queryApi";
 
 // Example questions shown as quick-select chips
 const EXAMPLE_QUESTIONS = [
-  "Which colleges offer an MBA, and what do they cost?",
-  "List the government colleges that have hostel facilities.",
   "Which colleges offer scholarships for low-income families?",
   "I scored 78% with ₹1.5 lakh/year budget — which engineering colleges?",
+  "Which colleges offer an MBA, and what do they cost?",
+  "List the government colleges that have hostel facilities.",
 ];
 
 export default function HomePage() {
@@ -35,6 +35,16 @@ export default function HomePage() {
   useEffect(() => {
     localStorage.setItem("makeMyEducationHistory", JSON.stringify(answerHistory));
   }, [answerHistory]);
+
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [answerHistory, isLoading]);
 
   async function handleQuerySubmit(queryText) {
     setIsLoading(true);
@@ -109,14 +119,23 @@ export default function HomePage() {
 
       {/* Main Chat Area */}
       <main className="chat-main">
-        {!isSidebarOpen && (
-          <button 
-            className="sidebar-toggle-btn sidebar-toggle-btn--floating" 
-            onClick={() => setIsSidebarOpen(true)}
-            title="Open sidebar"
-          >
-            ☰
-          </button>
+        {(!isSidebarOpen) && (
+          <header className="chat-header">
+            <div className="chat-header__controls">
+              <button 
+                className="sidebar-toggle-btn sidebar-toggle-btn--floating" 
+                onClick={() => setIsSidebarOpen(true)}
+                title="Open sidebar"
+              >
+                ☰
+              </button>
+              <div className="chat-header__logo">
+                <span className="sidebar__logo-make">MAKE</span>
+                <span className="sidebar__logo-my">My</span>
+                <span className="sidebar__logo-edu">EDU</span>
+              </div>
+            </div>
+          </header>
         )}
         <div className="chat-content">
           {answerHistory.length === 0 ? (
@@ -157,6 +176,7 @@ export default function HomePage() {
                 </div>
               ))}
               {isLoading && <LoadingSpinner />}
+              <div ref={messagesEndRef} />
             </div>
           )}
           {errorMessage && (
@@ -171,17 +191,25 @@ export default function HomePage() {
         <div className="chat-input-container">
           <div className="chat-input-wrapper">
             {answerHistory.length === 0 && (
-              <div className="examples-row">
-                {EXAMPLE_QUESTIONS.map((question) => (
-                  <button
-                    key={question}
-                    className="example-chip"
-                    onClick={() => handleExampleClick(question)}
-                    disabled={isLoading}
-                  >
-                    {question}
+              <div className="examples-container">
+                <div className="examples-row">
+                  <button className="example-chip" onClick={() => handleExampleClick(EXAMPLE_QUESTIONS[0])} disabled={isLoading}>
+                    {EXAMPLE_QUESTIONS[0]}
                   </button>
-                ))}
+                </div>
+                <div className="examples-row">
+                  <button className="example-chip" onClick={() => handleExampleClick(EXAMPLE_QUESTIONS[1])} disabled={isLoading}>
+                    {EXAMPLE_QUESTIONS[1]}
+                  </button>
+                </div>
+                <div className="examples-row">
+                  <button className="example-chip" onClick={() => handleExampleClick(EXAMPLE_QUESTIONS[2])} disabled={isLoading}>
+                    {EXAMPLE_QUESTIONS[2]}
+                  </button>
+                  <button className="example-chip" onClick={() => handleExampleClick(EXAMPLE_QUESTIONS[3])} disabled={isLoading}>
+                    {EXAMPLE_QUESTIONS[3]}
+                  </button>
+                </div>
               </div>
             )}
             <QueryInput onSubmit={handleQuerySubmit} isLoading={isLoading} />

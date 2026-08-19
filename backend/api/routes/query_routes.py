@@ -26,6 +26,7 @@ class QueryResponse(BaseModel):
     citations: list[str]
     answered: bool
     reason_if_unanswered: str | None
+    follow_up_questions: list[str] = []
 
 
 # ── Route handlers ─────────────────────────────────────────────────────────────

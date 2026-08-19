@@ -9,44 +9,44 @@
 /* ── CSS Variables ─────────────────────────────────────────────────────────── */
 :root {
   /* MME Light theme - matching makemyeducation.com */
-  --color-bg:          #f2f2f2;
-  --color-bg-surface:  #ffffff;
-  --color-bg-card:     #ffffff;
-  --color-sidebar:     #ffffff;
-  --color-border:      #e5e7eb;
+  --color-bg: #f2f2f2;
+  --color-bg-surface: #ffffff;
+  --color-bg-card: #ffffff;
+  --color-sidebar: #ffffff;
+  --color-border: #e5e7eb;
   --color-border-focus: #53b2fe;
 
   /* MME brand blue gradient */
-  --color-accent:       #1390f9;
+  --color-accent: #1390f9;
   --color-accent-light: #53b2fe;
-  --color-accent-dark:  #065af3;
-  --color-accent-glow:  rgba(19, 144, 249, 0.15);
+  --color-accent-dark: #065af3;
+  --color-accent-glow: rgba(19, 144, 249, 0.15);
 
   /* MME red badge for "My" */
-  --color-brand-red:   #e53e3e;
+  --color-brand-red: #e53e3e;
 
-  --color-success:     #22a06b;
-  --color-warning:     #d97706;
-  --color-error:       #dc2626;
+  --color-success: #22a06b;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
 
   /* Light text */
-  --color-text-primary:   #111827;
+  --color-text-primary: #111827;
   --color-text-secondary: #374151;
-  --color-text-muted:     #9ca3af;
+  --color-text-muted: #9ca3af;
 
-  --font-body:    'Lato', system-ui, sans-serif;
+  --font-body: 'Lato', system-ui, sans-serif;
   --font-display: 'Space Grotesk', system-ui, sans-serif;
 
-  --radius-sm:  6px;
-  --radius-md:  12px;
-  --radius-lg:  20px;
-  --radius-xl:  28px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
 
   --shadow-card: 0 1px 6px rgba(0, 0, 0, 0.08), 0 4px 20px rgba(0, 0, 0, 0.05);
   --shadow-glow: 0 4px 20px rgba(19, 144, 249, 0.25);
 
   --transition-fast: 0.15s ease;
-  --transition-med:  0.25s ease;
+  --transition-med: 0.25s ease;
   --transition-slow: 0.4s ease;
 }
 
@@ -132,8 +132,8 @@ body {
 .sidebar__logo-my {
   background: var(--color-brand-red);
   color: #fff;
-  padding: 0 6px 1px;
-  border-radius: 5px;
+  padding: 1px 7px 4px;
+  border-radius: 6px;
   font-size: 0.9rem;
   margin: 0 3px;
 }
@@ -200,14 +200,54 @@ body {
 }
 
 .sidebar-toggle-btn--floating {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.05);
+  background: #fff;
   border: 1px solid var(--color-border);
-  padding: 8px 12px;
-  font-size: 1.2rem;
+  padding: 4px 8px;
+  font-size: 0.95rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.chat-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 10px 16px;
+  background: rgba(242, 242, 242, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+  pointer-events: none; /* Let clicks pass through background */
+}
+
+.chat-header>* {
+  pointer-events: auto;
+  /* Re-enable clicks on children */
+}
+
+.chat-header__controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding-left: 16px;
+  width: fit-content;
+  pointer-events: auto;
+}
+
+.chat-header__logo {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  user-select: none;
+  padding-left: 16px;
 }
 
 .sidebar__history {
@@ -304,13 +344,14 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0;
+  padding-top: 60px;
   padding-bottom: 40px;
 }
 
 /* ── Chat Messages ──────────────────────────────────────────────────────────── */
 .chat-message {
   padding: 24px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .chat-message__user {
@@ -332,13 +373,14 @@ body {
   width: 32px;
   height: 32px;
   border-radius: 6px;
-  background-color: var(--color-accent2);
+  background-color: #374151;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   color: #fff;
   flex-shrink: 0;
+  font-size: 0.8rem;
 }
 
 .chat-message__avatar--bot {
@@ -354,7 +396,6 @@ body {
 
 .chat-message__response {
   flex: 1;
-  /* Reset some answer-card styles so it fits in chat flow nicely */
 }
 
 .chat-message__response .answer-card {
@@ -367,6 +408,7 @@ body {
 
 .chat-message__response .answer-card:hover {
   border-color: transparent;
+  box-shadow: none;
 }
 
 .chat-message__response .answer-card__question {
@@ -432,8 +474,8 @@ body {
 .hero__title--my {
   background: var(--color-brand-red);
   color: #fff;
-  padding: 0 10px 2px;
-  border-radius: 8px;
+  padding: 2px 14px 10px;
+  border-radius: 10px;
   margin: 0 4px;
   display: inline-block;
 }
@@ -552,13 +594,20 @@ body {
 }
 
 /* ── Example Chips ─────────────────────────────────────────────────────────── */
+.examples-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
 .examples-row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 8px;
-  margin-bottom: 16px;
   width: 100%;
 }
 
@@ -594,14 +643,11 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: var(--color-bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 10px 18px;
-  border-radius: var(--radius-lg);
+  background: transparent;
+  padding: 0;
+  padding-top: 2px;
   color: var(--color-text-secondary);
   font-size: 0.95rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  margin-top: 4px;
 }
 
 .reasoning-spinner {
@@ -724,9 +770,16 @@ body {
   margin-bottom: 20px;
 }
 
-.answer-card__text { color: var(--color-text-primary); font-size: 1rem; line-height: 1.75; }
+.answer-card__text {
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  line-height: 1.75;
+}
 
-.answer-card__text strong { color: var(--color-accent-dark); font-weight: 700; }
+.answer-card__text strong {
+  color: var(--color-accent-dark);
+  font-weight: 700;
+}
 
 .answer-paragraph {
   margin-bottom: 12px;
@@ -757,9 +810,61 @@ body {
 }
 
 .answer-card__reason {
-  margin-top: 12px;
-  color: var(--color-warning);
-  font-size: 0.88rem;
+  margin-top: 16px;
+  color: var(--color-error);
+  font-size: 0.95rem;
+  background: rgba(220, 38, 38, 0.05);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(220, 38, 38, 0.1);
+}
+
+.answer-card__followups {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+.followups-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.followups-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.followup-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.followup-item:hover {
+  background: rgba(19, 144, 249, 0.05);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.followup-item__icon {
+  color: var(--color-accent);
+  font-weight: bold;
 }
 
 /* Citations */
