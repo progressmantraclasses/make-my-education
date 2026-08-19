@@ -20,7 +20,7 @@ The system leverages advanced semantic search, caching, and a modern React front
 *   **Vector Database**: Pinecone (Serverless) for lightning-fast similarity search.
 *   **Embedding Model**: `sentence-transformers/all-MiniLM-L6-v2` (Local, zero-cost embedding).
 *   **Caching Layer**: Upstash Redis (Serverless) for sub-100ms cache hits.
-*   **LLM Provider**: Proxy-routed `openai/gpt-oss-120b` (Large) and `openai/gpt-oss-20b` (Small) for JSON-structured, highly grounded generation.
+*   **LLM Provider**: Proxy-routed `openai/gpt-oss-120b` (Large) and `openai/gpt-oss-20b` (Small) for JSON-structured, highly grounded  generation.
 
 ---
 
