@@ -1,0 +1,105 @@
+[
+  {
+    "id": "eval_01_unit_conversion",
+    "description": "Per-semester unit conversion — must not silently return annual fee",
+    "query": "What is the fee per semester at North Ridge Institute of Technology?",
+    "expect_answered": true,
+    "expect_citations_contain": ["C001"],
+    "expect_answer_contains": ["semester", "72,500"],
+    "expect_answer_not_contains": [],
+    "is_cache_test": false
+  },
+  {
+    "id": "eval_02_diploma_exclusion",
+    "description": "Diploma-only institution should NOT appear for engineering college query",
+    "query": "Which engineering colleges can I apply to with 65% marks?",
+    "expect_answered": true,
+    "expect_citations_contain": [],
+    "expect_citations_not_contain": ["C005"],
+    "expect_answer_contains": [],
+    "expect_answer_not_contains": ["Shivalik Government Polytechnic"],
+    "is_cache_test": false
+  },
+  {
+    "id": "eval_03_placement_zero",
+    "description": "College with avg_placement_lpa=0 should NOT be called worst",
+    "query": "Which college has the worst placement record?",
+    "expect_answered": true,
+    "expect_citations_contain": [],
+    "expect_citations_not_contain": [],
+    "expect_answer_contains": [],
+    "expect_answer_not_contains": ["Nainital Institute of Medical Sciences"],
+    "is_cache_test": false
+  },
+  {
+    "id": "eval_04_out_of_scope",
+    "description": "Question about a course not in the dataset should be unanswerable",
+    "query": "Does any college offer a B.Tech in Artificial Intelligence?",
+    "expect_answered": false,
+    "expect_citations_contain": [],
+    "expect_answer_contains": [],
+    "expect_answer_not_contains": [],
+    "is_cache_test": false
+  },
+  {
+    "id": "eval_05_similar_names",
+    "description": "Must disambiguate Ganga Valley University and Ganga Institute of Commerce",
+    "query": "Tell me about Ganga Valley University. Is it the same as Ganga Institute of Commerce?",
+    "expect_answered": true,
+    "expect_citations_contain": ["C002", "C014"],
+    "expect_answer_contains": ["Haridwar", "Dehradun"],
+    "expect_answer_not_contains": [],
+    "is_cache_test": false
+  },
+  {
+    "id": "eval_06_cache_hit",
+    "description": "Same query run twice should hit cache on the second run",
+    "query": "Which colleges offer an MBA, and what do they cost?",
+    "expect_answered": true,
+    "expect_citations_contain": ["C002", "C004"],
+    "expect_answer_contains": [],
+    "expect_answer_not_contains": [],
+    "is_cache_test": true
+  },
+  {
+    "id": "eval_07_budget_additional_costs",
+    "description": "Budget answer must mention additional costs beyond tuition",
+    "query": "I have a budget of ₹2 lakh/year. Which colleges can I afford, considering all costs?",
+    "expect_answered": true,
+    "expect_citations_contain": [],
+    "expect_answer_contains": [],
+    "expect_answer_not_contains": [],
+    "is_cache_test": false
+  },
+  {
+    "id": "eval_08_cutoff_hard_floor",
+    "description": "Student below cutoff should be told they are NOT eligible",
+    "query": "I scored 50% in Class 12. Can I get into Ambedkar National Institute?",
+    "expect_answered": true,
+    "expect_citations_contain": ["C012"],
+    "expect_answer_contains": ["88"],
+    "expect_answer_not_contains": [],
+    "is_cache_test": false
+  },
+  {
+    "id": "eval_09_government_filter",
+    "description": "Government college filter should only return government colleges",
+    "query": "List all government colleges in the dataset.",
+    "expect_answered": true,
+    "expect_citations_contain": ["C005", "C007", "C011", "C012"],
+    "expect_citations_not_contain": ["C001", "C002", "C003", "C004"],
+    "expect_answer_contains": [],
+    "expect_answer_not_contains": [],
+    "is_cache_test": false
+  },
+  {
+    "id": "eval_10_medical_placement_context",
+    "description": "C006 placement=0 should be explained with medical context, not ranked as worst",
+    "query": "What is the placement record at Nainital Institute of Medical Sciences?",
+    "expect_answered": true,
+    "expect_citations_contain": ["C006"],
+    "expect_answer_contains": [],
+    "expect_answer_not_contains": ["worst", "0 LPA", "lowest"],
+    "is_cache_test": false
+  }
+]
