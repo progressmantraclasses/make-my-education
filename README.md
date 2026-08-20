@@ -213,6 +213,37 @@ Cache hit rate directly impacts cost. At 50% cache hit rate (common for popular 
 
 ---
 
+## Part C — Short Written Reflection
+
+* **How would you keep per-query cost low for our AI counsellor as usage grows?**
+  Implementing a robust caching layer (like Redis) for exact or semantically similar queries ensures repeated questions cost $0. Additionally, using a tiered LLM approach—routing standard queries to smaller, fast, and cheap models (like Gemini 1.5 Flash or Llama-3-8B) while reserving larger models only as fallbacks—keeps base costs minimal.
+* **How would you stop the system from ever stating a wrong fee or cutoff?**
+  By strictly anchoring the RAG prompt to use only the provided context and instructing the LLM to output numerical figures exactly as written. For absolute safety, a deterministic post-processing script or validator model can cross-reference the output's numbers against the retrieved source chunks before returning it to the user.
+* **If you joined tomorrow, what would you build first for Make My Education, and why?**
+  I would first build conversational memory (multi-turn context). Students rarely ask just one question; they ask follow-ups ("What about the second college?"). A memory buffer ensures a seamless, human-like advisory experience rather than feeling like a disconnected search engine.
+* **How would you measure whether AI is actually helping students?**
+  By tracking implicit engagement metrics (e.g., click-through rates on "Apply Now" buttons, session length, and reduced drop-offs) alongside explicit feedback (thumbs up/down on individual answers or a post-chat CSAT survey).
+
+---
+
+## Part D — Cost, With Numbers
+
+*Metrics derived from `query_log.jsonl` measuring 436 actual recorded test runs.*
+
+| Metric | Your number |
+|---|---|
+| **Average input tokens per query** | 2,376 |
+| **Average output tokens per query** | 521 |
+| **Average end-to-end latency per query** | ~11.28 seconds |
+| **Model(s) used, and cost per 1M tokens** | `groq/compound-mini` (Equivalent to Gemini 1.5 Flash pricing: ~$0.075/1M Input, ~$0.30/1M Output) |
+| **Cost per 1,000 queries, in ₹** | ~₹28 (assuming $0.33 total for input/output per 1K queries) |
+| **One-time embedding cost for the full dataset** | $0.00 (Local `sentence-transformers`) |
+
+**Scaling to 50,000 queries/month:**
+At 50,000 queries a month, **latency and rate limits** will break first long before cost becomes an issue. With an 11-second average generation time, sequential requests will rapidly bottleneck standard API quotas. To fix this, I would immediately implement **response streaming (Server-Sent Events)** and a **Semantic Cache**. Streaming drops the perceived time-to-first-token to sub-second levels, while caching would bypass generation entirely for popular questions, saving roughly 30-40% of all API requests and their associated latency.
+
+---
+
 ## 🔮 Future Improvements
 
 1. **Ultra-Low Latency Inference**: Currently, the system uses a proxy-routed LLM which can sometimes introduce network latency. In a full production environment, migrating to **Google's native Gemini models** (e.g., Gemini 1.5 Flash) or hosting **Llama 3 8B locally on dedicated GPUs** (without API rate limits) would dramatically reduce Time-to-First-Token (TTFT) and make the chatbot feel instantaneous.
