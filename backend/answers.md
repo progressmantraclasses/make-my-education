@@ -12,7 +12,7 @@ Verbatim, unedited output from `answer.py` for each of the 7 required questions.
 
 ```json
 {
-  "answer": "Based on your 78% score and a budget of ₹1.5 lakh per academic year, you can consider the following engineering colleges in Uttarakhand:\n\n1. **Himalayan College of Engineering (C003)** – Cutoff is 75% (hard minimum) and the annual tuition fee is ₹132,000, which is within your budget. The college offers B.Tech programs in CSE, Civil, and EE.\n2. **Terai Technical University (C009)** – Cutoff is 70% (hard minimum) and the annual tuition fee is ₹118,000, also within your budget. It offers B.Tech programs in CSE and ME, as well as MCA and M.Tech.\n\nBoth institutions meet the minimum aggregate requirement and have tuition fees below ₹150,000 per year. No additional charges (hostel, mess, lab, etc.) are specified in the provided data, so the tuition fee is the primary cost to consider.\n\nColleges such as North Ridge Institute of Technology (C001) and Ambedkar National Institute (C012) have higher cutoff percentages (82% and 88% respectively) and therefore are not eligible for your score.",
+  "answer": "You can consider **Himalayan College of Engineering** and **Terai Technical University** as they both meet your 78% cutoff and fit within your ₹1.5 lakh per‑year budget.\n\n### Eligible Engineering Colleges\n\n| College | City | Annual Tuition (₹) | Cutoff % (hard minimum) | Hostel Available? |\n|---|---|---|---|---|\n| **Himalayan College of Engineering** | Roorkee, Uttarakhand | **132,000** | 75% | Yes (separate charge) |\n| **Terai Technical University** | Rudrapur, Uttarakhand | **118,000** | 70% | Yes (separate charge) |\n\n**Key points**\n- Both institutions offer B.Tech programmes (CSE, ME, etc.) and meet the required academic cutoff.\n- Tuition fees are per academic year and are below your ₹1.5 lakh limit.\n- Hostel accommodation is available at both colleges, but fees for hostel, mess, and any additional lab or studio charges are **not included** in the tuition figures and will add to your total yearly expense.\n\n### Budget Considerations\n- **Himalayan College of Engineering**: Tuition ₹132,000 + hostel/mess (amount not specified) → total will exceed ₹132,000.\n- **Terai Technical University**: Tuition ₹118,000 + hostel/mess (amount not specified) → total will exceed ₹118,000.\n- Ensure you factor in these extra living costs when finalising your budget.\n\n### Next Steps\n- Check each college’s official website for exact hostel and mess fee structures.\n- Review scholarship or fee concession options (e.g., Himalayan College offers a 15% concession for female students) that could further reduce costs.\n\n### Follow-up Questions\n1. What are the hostel and mess fee details for **Himalayan College of Engineering** and **Terai Technical University**?\n2. Are there any merit‑based scholarships or fee concessions available at these colleges for students with a 78% score?\n3. How do the placement statistics and average salary packages compare between **Himalayan College of Engineering** and **Terai Technical University**?",
   "citations": [
     "C003",
     "C009"
@@ -32,7 +32,7 @@ Verbatim, unedited output from `answer.py` for each of the 7 required questions.
 
 ```json
 {
-  "answer": "The colleges that offer an MBA are Doon Business School (C004) with an annual fee of ₹175,000 per academic year, and Ganga Valley University (C002) with an annual fee of ₹98,000 per academic year.",
+  "answer": "The colleges in the dataset that offer an MBA program are **Doon Business School** and **Ganga Valley University**. Their annual tuition fees (per academic year) are:\n\n| College | Annual Tuition Fee (INR) |\n|---|---|\n| **Doon Business School** | **₹175,000** |\n| **Ganga Valley University** | **₹98,000** |\n\nThese fees cover only tuition for the academic year and do not include additional costs such as hostel, mess, lab, or other charges that may apply.\n\n### Follow-up Questions\n1. What are the placement statistics and average salary packages for MBA graduates at **Doon Business School** and **Ganga Valley University**?\n2. Are there any scholarship or fee concession options available for MBA students at these colleges?\n3. What are the hostel facilities and associated living costs for MBA students at **Doon Business School** and **Ganga Valley University**?",
   "citations": [
     "C004",
     "C002"
@@ -52,7 +52,7 @@ Verbatim, unedited output from `answer.py` for each of the 7 required questions.
 
 ```json
 {
-  "answer": "The government colleges in the provided data that have hostel facilities are Ambedkar National Institute (C012) and Kumaon Arts and Science College (C007). Both institutions are listed as Government type and indicate \"Hostel: Yes\" in their details.",
+  "answer": "The government colleges that have hostel facilities are **Ambedkar National Institute** and **Kumaon Arts and Science College**.\n\n### Comparison Table\n\n| College | Type | City | **Annual Fees (INR)** | Hostel | NAAC Rating | Avg Placement (LPA) |\n|---|---|---|---|---|---|---|\n| **Ambedkar National Institute** | Government | Kashipur, Uttarakhand | **45,000** per year | Yes | A+ | 8.4 |\n| **Kumaon Arts and Science College** | Government | Almora, Uttarakhand | **15,000** per year | Yes | B | 2.8 |\n\n### Follow-up Questions\n1. What are the admission eligibility criteria and cutoff percentages for **Ambedkar National Institute** and **Kumaon Arts and Science College**?\n2. Are there any scholarship or fee waiver schemes available for students at these government colleges?\n3. How do the placement opportunities differ between **Ambedkar National Institute** and **Kumaon Arts and Science College**?",
   "citations": [
     "C012",
     "C007"
@@ -72,7 +72,7 @@ Verbatim, unedited output from `answer.py` for each of the 7 required questions.
 
 ```json
 {
-  "answer": "The average placement package at North Ridge Institute of Technology (C001) is 6.5 LPA.",
+  "answer": "**North Ridge Institute of Technology** has an average placement package of **6.5 LPA**.\n\nThe institute reports a strong placement record for its Computer Science and Engineering (CSE) graduates, with an average salary offer of 6.5 lakh per annum. This figure reflects the average across all reported placements for the most recent year.\n\n### Follow-up Questions\n1. What scholarships are available at North Ridge Institute of Technology?\n2. How much does hostel accommodation cost at North Ridge Institute of Technology?\n3. What are the placement trends for Mechanical Engineering graduates at North Ridge Institute of Technology?",
   "citations": [
     "C001"
   ],
@@ -91,7 +91,7 @@ Verbatim, unedited output from `answer.py` for each of the 7 required questions.
 
 ```json
 {
-  "answer": "Ganga Valley University (C002) does not list a PhD in Physics among its offered programmes. The university’s listed courses are BBA, B.Com, BCA, and MBA, with no mention of doctoral programmes in physics or any other discipline.",
+  "answer": "No, **Ganga Valley University** does not offer a PhD in Physics according to the provided data.\n\nThe university’s listed programmes are limited to undergraduate and postgraduate commerce and computer applications (BBA, B.Com, BCA, MBA) with no mention of doctoral or physics courses.\n\n### Follow-up Questions\n1. Which colleges in the dataset offer PhD programmes in engineering or science?\n2. What postgraduate (M.Tech or MCA) programmes are available at **Terai Technical University**?\n3. Are there any fee concessions or scholarships available at **Ganga Valley University** for low‑income families?",
   "citations": [
     "C002"
   ],
@@ -110,9 +110,11 @@ Verbatim, unedited output from `answer.py` for each of the 7 required questions.
 
 ```json
 {
-  "answer": "Kumaon Arts and Science College (C007) provides means‑cum‑merit scholarships from the state government for students whose family income is below the eligibility threshold, covering tuition and a monthly stipend. None of the other colleges in the provided dataset mention scholarships specifically for low‑income families.",
+  "answer": "Three colleges in the dataset provide scholarships or tuition waivers specifically for low‑income families.\n\n### Colleges with Low‑Income Scholarships\n\n| College | Scholarship Details | Annual Tuition (₹) | Additional Costs Mentioned |\n|---|---|---|---|\n| **Kumaon Arts and Science College** | Means‑cum‑merit scholarships cover tuition and a monthly stipend for students below the income threshold. | **15,000** | Hostel available (limited) but no extra charge described. |\n| **Doon Business School** | Alumni‑funded scholarship covers full tuition for five financially‑need students each year. | **175,000** | Hostel residence is compulsory in the first year; mess facilities are charged **over and above tuition**. |\n| **Ambedkar National Institute** | Full tuition waiver for students whose annual family income is below ₹5 lakh. | **45,000** (waived for eligible students) | Hostel residence is compulsory for all undergraduates; no separate hostel fee mentioned. |\n\nThese scholarships directly reduce or eliminate tuition costs for eligible low‑income students, though Doon Business School also adds a separate mess charge on top of tuition.\n\n### Follow-up Questions\n1. What are the placement statistics for **Kumaon Arts and Science College**, **Doon Business School**, and **Ambedkar National Institute**?\n2. How do the hostel facilities and associated costs differ among **Kumaon Arts and Science College**, **Doon Business School**, and **Ambedkar National Institute**?\n3. Which of these colleges have the highest average placement packages for their graduates?",
   "citations": [
-    "C007"
+    "C007",
+    "C004",
+    "C012"
   ],
   "answered": true,
   "reason_if_unanswered": null
@@ -129,12 +131,20 @@ Verbatim, unedited output from `answer.py` for each of the 7 required questions.
 
 ```json
 {
-  "answer": "Your budget of **₹1 lakh per semester** translates to **≈ ₹2 lakh per academic year** (assuming two equal semesters). Converting the annual fees of each college to a per‑semester figure gives:\n\n- **Ganga Institute of Commerce (C014)** – ₹72,000 / year → **≈ ₹36,000/semester**\n- **Kumaon Arts and Science College (C007)** – ₹15,000 / year → **≈ ₹7,500/semester**\n- **Ganga Valley University (C002)** – ₹98,000 / year → **≈ ₹49,000/semester**\n- **Ambedkar National Institute (C012)** – ₹45,000 / year → **≈ ₹22,500/semester**\n- Doon Business School (C004), Himalayan College of Engineering (C003), North Ridge Institute of Technology (C001) and Rishikesh Institute of Design (C008) exceed your budget (₹87,500 – ₹105,000/semester) and are therefore not viable options.\n\n### Colleges that fit your budget\n| College (ID) | Semester fee | Courses offered | Cut‑off (hard minimum) | Avg. placement* |\n|--------------|--------------|----------------|-----------------------|-----------------|\n| **Ganga Institute of Commerce** (C014) | ₹36,000 | B.Com, BBA, M.Com, CA‑Foundation | 63 % | 3.9 LPA |\n| **Kumaon Arts and Science College** (C007) | ₹7,500 | B.A, B.Sc, B.Com, M.A | 55 % | 2.8 LPA |\n| **Ganga Valley University** (C002) | ₹49,000 | BBA, B.Com, BCA, MBA | 68 % | 4.2 LPA |\n| **Ambedkar National Institute** (C012) | ₹22,500 | B.Tech, B.Arch, M.Tech | 88 % | 8.4 LPA |\n\n*Placement figures are average salary offers (LPA) reported by the institutions.\n\n### How to choose the \"best\" college for you\n1. **Field of interest** – If you want a commerce/management degree, the two dedicated commerce colleges (C014 and C002) are the natural choices. If you are interested in engineering or architecture, Ambedkar National Institute (C012) offers those programmes and also stays well within your budget.\n2. **Cut‑off requirement** – Your academic record must meet the hard‑minimum cut‑off. C012 has the highest bar (88 %), while C007 is the most accessible (55 %).\n3. **Placement prospects** – Among the budget‑friendly options, C012 shows the strongest placement average (8.4 LPA), followed by C002 (4.2 LPA) and C014 (3.9 LPA). C007 has the lowest placement average (2.8 LPA).\n4. **Overall recommendation** –\n   - **If you aim for a commerce/management career** and have a cut‑off around 65‑70 %, **Ganga Valley University (C002)** offers a good mix of relevant courses, a moderate cut‑off, and the second‑best placement average within your budget.\n   - **If you prefer a pure commerce focus** with a lower cut‑off, **Ganga Institute of Commerce (C014)** is also a solid, affordable option.\n   - **If you are qualified for a high cut‑off (≥ 88 %) and want engineering/architecture**, **Ambedkar National Institute (C012)** gives the best placement outcomes while still being well under your semester budget.\n\nChoose the college that aligns with your intended programme, meets your eligibility cut‑off, and offers the placement prospects you value most.",
+  "answer": "Based on your budget of **₹1 lakh per semester** (≈ ₹2 lakh per academic year), **Ambedkar National Institute** is the top choice – it meets the budget, has the highest average placement (8.4 LPA) and a top NAAC rating (A+).\n\n### Colleges that fit the ₹1 lakh/semester budget\n| College | Annual Fees (₹) | Approx. ₹/semester* | Hostel | NAAC | Avg. Placement (LPA) |\n|---|---|---|---|---|---|\n| **Ambedkar National Institute** | 45,000 | 22,500 | Yes (compulsory) | A+ | 8.4 |\n| **Do​on Business School** | 175,000 | 87,500 | Yes | A+ | 7.1 |\n| **North Ridge Institute of Technology** | 145,000 | 72,500 | Yes | A | 6.5 |\n| **Terai Technical University** | 118,000 | 59,000 | Yes | A+ | 6.0 |\n| **Himalayan College of Engineering** | 132,000 | 66,000 | Yes | A | 5.8 |\n| **Silver Peak School of Media** | 138,000 | 69,000 | Yes | B++ | 4.3 |\n| **Ganga Valley University** | 98,000 | 49,000 | Yes | B++ | 4.2 |\n| **Char Dham Pharmacy College** | 95,000 | 47,500 | Yes | B++ | 4.1 |\n| **Haldwani Law College** | 28,000 | 14,000 | No | A | 4.0 |\n| **Rishikesh Institute of Design** (excluded – fee > ₹1 lakh/semester) | 210,000 | 105,000 | Yes | A | 5.2 |\n| **Kumaon Arts and Science College** | 15,000 | 7,500 | Yes (limited) | B | 2.8 |\n| **Ganga Institute of Commerce** | 72,000 | 36,000 | No (despite header) | B+ | 3.9 |\n| **Shivalik Government Polytechnic** | 22,000 | 11,000 | No | B+ | 3.4 |\n\n*Assumes two equal semesters per academic year.\n\n### Why Ambedkar National Institute stands out\n- **Highest placement average (8.4 LPA)** among all budget‑compatible colleges.\n- **NAAC A+ accreditation**, indicating strong academic quality.\n- **Low tuition (₹45,000/year)** well below your budget, leaving room for hostel or other living expenses.\n- **Full fee waiver for low‑income families** (annual family income < ₹5 lakh) – could further reduce costs.\n- **Compulsory hostel** ensures on‑campus accommodation, simplifying budgeting.\n\n### Additional cost considerations\n- No extra studio, lab, or kit fees are mentioned for Ambedkar National Institute, so the ₹45,000/year figure likely covers tuition only; hostel fees may be charged separately but are typically modest.\n- For colleges with “studio, material and printing charges” (e.g., Rishikesh Institute of Design) or other ancillary fees, total cost could exceed the per‑semester limit.\n\n### Follow-up Questions\n1. What scholarship or fee‑waiver options are available at **Ambedkar National Institute**?\n2. How do the placement outcomes of **Ambedkar National Institute** compare with those of **Do​on Business School**?\n3. Which colleges offering **hostel facilities** stay within my ₹1 lakh per semester budget?",
   "citations": [
+    "C012",
+    "C004",
+    "C001",
+    "C009",
+    "C003",
+    "C015",
+    "C002",
+    "C013",
+    "C011",
     "C014",
     "C007",
-    "C002",
-    "C012"
+    "C005"
   ],
   "answered": true,
   "reason_if_unanswered": null

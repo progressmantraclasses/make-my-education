@@ -44,6 +44,28 @@ This README serves to **demonstrate the working prototype**, **explain the techn
 
 **Local Embeddings.** Running all-MiniLM-L6-v2 locally drops embedding costs to zero permanently, while maintaining strong semantic match quality.
 
+**Grounded Refusal (`answered: false`).** When the data cannot support an answer — for example, a topic completely outside the dataset (e.g. "PhD in Physics" when no such course exists in the data) — the system sets `answered: false` and leaves `citations` empty. It never guesses or fabricates a response. The JSON output contract is:
+
+```json
+{
+  "answer": "Ganga Valley University (C002) offers MBA at Rs 98,000/yr.",
+  "citations": ["C002"],
+  "answered": true,
+  "reason_if_unanswered": null
+}
+```
+
+When the data cannot answer:
+
+```json
+{
+  "answer": "Ganga Valley University does not offer a PhD in Physics.",
+  "citations": [],
+  "answered": false,
+  "reason_if_unanswered": "No PhD in Physics programme exists in the dataset."
+}
+```
+
 ---
 
 ## Project Structure

@@ -38,19 +38,18 @@ STRICT RULES:
 
 8. **Direct Answer First (BLUF)**: Always give the direct, definitive answer in the very first sentence at the top. If 0 colleges match the criteria, state it immediately (e.g., "None of the colleges in the data match this criteria."). Provide your tables, lists, or detailed explanations ONLY AFTER the direct answer. Never put the conclusion at the bottom.
 
-9. **Formatting & Structure (CRITICAL)**: You MUST format your answer using rich Markdown. Use **Markdown Tables** for comparisons between colleges. Use **Bold Headers** (###) to separate different parts of your answer. Use bullet points for lists. Wrap all College Names and Annual Fee amounts in **double asterisks** to bold them. Do NOT include the raw college IDs (like (C012), (C007)) in your visible text or follow-up questions; just use the college names. Never output a single dense block of text; your output must be a highly structured, scannable, and professional response.
+9. **Formatting & Structure (CRITICAL)**: You MUST format your answer using rich Markdown. Use **Markdown Tables** for comparisons between colleges. Use **Bold Headers** (###) to separate different parts of your answer. Use bullet points for lists. Wrap all College Names and Annual Fee amounts in **double asterisks** to bold them. Do NOT include the raw college IDs (like (C012), (C007)) in your visible text; just use the college names. Never output a single dense block of text; your output must be a highly structured, scannable, and professional response.
 
-10. **Follow-ups**: Always generate 3 logical follow-up questions that the user might want to ask next. CRITICAL: The follow-up questions must be completely self-contained and explicit. Do NOT use pronouns like "these", "those", "it", or "this college". Explicitly name the colleges or entities you are referring to. Do NOT include or mention the follow-up questions inside your main `"answer"` text string; they must ONLY be placed in the `"follow_up_questions"` JSON array.
+10. **Follow-ups**: Always generate 3 logical follow-up questions that the user might want to ask next. CRITICAL: The follow-up questions must be completely self-contained and explicit. Do NOT use pronouns like "these", "those", "it", or "this college". Explicitly name the colleges or entities you are referring to. Include these follow-up questions at the very end of your main `"answer"` text string under a markdown heading `### Follow-up Questions`.
 
 11. **Response format**: You MUST respond with a valid JSON object with exactly these fields:
 {{
-  "answer": "Your detailed answer text here",
+  "answer": "Your detailed answer text here... \\n\\n### Follow-up Questions\\n1. Question 1?\\n2. Question 2?\\n3. Question 3?",
   "citations": ["C001", "C002"],
   "answered": true,
-  "reason_if_unanswered": null,
-  "follow_up_questions": ["Question 1?", "Question 2?", "Question 3?"]
+  "reason_if_unanswered": null
 }}
-- If you cannot answer, set "answered" to false, "answer" to a brief explanation, "citations" to [], "reason_if_unanswered" to a clear reason, and provide related "follow_up_questions".
+- If you cannot answer, set "answered" to false, "answer" to a brief explanation, "citations" to [], and "reason_if_unanswered" to a clear reason.
 - The "citations" array must contain only college_id strings that you actually reference.
 
 CONTEXT:
@@ -102,8 +101,7 @@ def parse_llm_response(raw_llm_text: str, force_error_reason: str = None) -> dic
             "answer": "System Error",
             "citations": [],
             "answered": False,
-            "reason_if_unanswered": force_error_reason,
-            "follow_up_questions": []
+            "reason_if_unanswered": force_error_reason
         }
 
     try:
@@ -113,8 +111,7 @@ def parse_llm_response(raw_llm_text: str, force_error_reason: str = None) -> dic
             "answer": raw_llm_text,
             "citations": [],
             "answered": False,
-            "reason_if_unanswered": "Failed to parse LLM response as JSON.",
-            "follow_up_questions": []
+            "reason_if_unanswered": "Failed to parse LLM response as JSON."
         }
 
     # Guarantee all required fields exist
@@ -122,25 +119,9 @@ def parse_llm_response(raw_llm_text: str, force_error_reason: str = None) -> dic
     parsed.setdefault("citations", [])
     parsed.setdefault("answered", True)
     parsed.setdefault("reason_if_unanswered", None)
-    parsed.setdefault("follow_up_questions", [])
 
     # Post-process: strip raw college IDs like (C012) from the text to ensure frontend cleanliness
     parsed["answer"] = re.sub(r"\s*\(C\d{3}\)", "", parsed["answer"])
-
-    # Post-process: strip any "Follow-up Questions" / "Follow-ups" section the LLM appended
-    # to the answer text — the frontend already renders follow_up_questions as buttons,
-    # so any in-text copy creates a duplicate that confuses the user.
-    parsed["answer"] = re.sub(
-        r"\n+#{0,4}\s*follow[- ]?up[s]?.*",
-        "",
-        parsed["answer"],
-        flags=re.IGNORECASE | re.DOTALL,
-    ).rstrip()
-
-    clean_followups = []
-    for q in parsed["follow_up_questions"]:
-        clean_followups.append(re.sub(r"\s*\(C\d{3}\)", "", str(q)))
-    parsed["follow_up_questions"] = clean_followups
 
     return parsed
 
